@@ -14,6 +14,10 @@ html_content = f"""<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naraito's Playbook | Mastering US Remote Engineering Jobs</title>
+  <meta name="description" content="Naraito's Playbook: A step-by-step guide to land $60K–$120K US remote engineering jobs from anywhere. Zero experience required." />
+  <meta property="og:title" content="Naraito's Playbook | Land $60K–$120K US Remote Engineering Jobs" />
+  <meta property="og:description" content="Battle-tested blueprint for international engineers to land high-paying US remote contractor roles." />
+  <meta property="og:url" content="https://naraitos-playbook.vercel.app/" />
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -201,7 +205,7 @@ html_content = f"""<!DOCTYPE html>
         <!-- Overall Roadmap Progress -->
         <div class="flex items-center gap-2.5">
           <div class="text-right hidden md:block">
-            <div class="text-[10px] uppercase font-mono text-[#8888A8]">Roadmap Progress</div>
+            <div class="text-[10px] uppercase font-mono text-[#8888A8]">Overall Progress:</div>
             <div id="header-progress-text" class="text-xs font-mono font-bold text-[#00D4AA]">0% (0/24 tasks)</div>
           </div>
           <div class="w-20 sm:w-28 bg-[#13131A] h-2 rounded-full overflow-hidden border border-[#2A2A3A]">
@@ -232,22 +236,33 @@ html_content = f"""<!DOCTYPE html>
     <!-- STICKY TOP PILL NAVIGATION BAR -->
     <div id="mobile-pill-nav" class="border-t border-[#2A2A3A] bg-[#13131A]/90 backdrop-blur-md overflow-x-auto scrollbar-none py-2 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
-        <a href="#hero-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Start Here</a>
-        <a href="#roadmap-90-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">90-Day Roadmap</a>
-        <a href="#filters-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">5 Filters</a>
+        <a href="#hero-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Home</a>
+        <a href="#roadmap-90-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">90-Day Plan</a>
+        <a href="#filters-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Diagnose</a>
         <a href="#reality-check-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Reality Check</a>
-        <a href="#roadmap-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Execution Roadmap</a>
-        <a href="#blueprints-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Projects</a>
-        <a href="#offer-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Offer Framework</a>
-        <a href="#linkedin-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">LinkedIn Studio</a>
-        <a href="#outreach-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Outreach CRM</a>
-        <a href="#job-search-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Job Search Engine</a>
+        <a href="#roadmap-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Roadmap</a>
+        <a href="#blueprints-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Build Proof</a>
+        <a href="#offer-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Craft Offer</a>
+        <a href="#linkedin-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">LinkedIn</a>
+        <a href="#outreach-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Outreach</a>
+        <a href="#job-search-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Find Jobs</a>
         <a href="#courses-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Free Courses</a>
         <a href="#resources-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Resources</a>
-        <a href="#final-checklist-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Final Checklist</a>
+        <a href="#final-checklist-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Final Check</a>
       </div>
     </div>
   </header>
+
+  <!-- TODAY'S FOCUS CARD -->
+  <div id="todays-focus-bar" class="bg-[#13131A] border-b border-[#2A2A3A] py-2 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-xs">
+        <span class="font-mono text-[#6C63FF] font-semibold shrink-0">Today's Focus &#8594;</span>
+        <span id="todays-focus-task" class="text-slate-300 truncate">Loading your next milestone...</span>
+      </div>
+      <a href="#roadmap-section" class="px-3 py-1 rounded-lg bg-[#6C63FF]/20 hover:bg-[#6C63FF]/30 text-[#6C63FF] text-xs font-medium shrink-0 transition">Jump to Task &#8594;</a>
+    </div>
+  </div>
 
   <!-- MAIN PLAYBOOK CONTENT -->
   <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
@@ -284,6 +299,15 @@ html_content = f"""<!DOCTYPE html>
           <span class="px-3 py-1 rounded-lg bg-[#13131A] border border-[#2A2A3A] text-xs text-slate-300 flex items-center gap-1.5">
             <i data-lucide="globe" class="w-3.5 h-3.5 text-sky-400"></i> 0 US Visa Required (W-8BEN)
           </span>
+        </div>
+
+        <!-- Author Card -->
+        <div class="flex items-center gap-3 pt-4 p-4 rounded-xl bg-[#13131A] border border-[#2A2A3A] max-w-lg">
+          <div class="w-10 h-10 rounded-full bg-[#6C63FF] flex items-center justify-center text-white font-bold font-heading text-sm shrink-0">N</div>
+          <div>
+            <div class="text-sm font-bold text-white font-heading">Built by Naraito (Uduthalaboina Sai Varshith)</div>
+            <div class="text-xs text-[#8888A8]">Final-year B.Tech AI/ML &#183; BITS Warangal &#183; <a href="https://github.com/Naraito-ai" target="_blank" class="text-[#6C63FF] hover:underline">GitHub: Naraito-ai</a></div>
+          </div>
         </div>
       </div>
 
@@ -2109,7 +2133,7 @@ html_content = f"""<!DOCTYPE html>
       </div>
 
       <div class="text-xs text-[#8888A8] text-center md:text-right">
-        &copy; 2026 Naraito's Playbook. All rights reserved.
+        &copy; 2026 Naraito's Playbook &middot; Built by Uduthalaboina Sai Varshith &middot; Last updated: September 2026 &middot; All data saved locally in your browser
       </div>
     </div>
   </footer>

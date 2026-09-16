@@ -527,10 +527,30 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   loadContentPrompt('confusion');
   loadOutreachTemplate(1);
+  updateTodaysFocus();
 
   // Initialize Lucide icons
   if (window.lucide) {
     lucide.createIcons();
+  }
+
+  // Scroll spy for nav pill active state
+  const navPills = document.querySelectorAll('.nav-pill');
+  const sections = document.querySelectorAll('section[id]');
+  if ('IntersectionObserver' in window && sections.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navPills.forEach(pill => {
+            pill.classList.remove('active');
+            if (pill.getAttribute('href') === '#' + entry.target.id) {
+              pill.classList.add('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => observer.observe(s));
   }
 });
 
@@ -943,6 +963,7 @@ function toggleTask(phaseKey, taskId) {
     saveToStorage(STORAGE_KEYS.ROADMAP, appState.roadmap);
     renderRoadmap();
     updateRoadmapProgress();
+    updateTodaysFocus();
     if (task.completed) {
       AudioFX.playSuccess();
       showToast(`Milestone completed: ${task.title}`);
@@ -1999,6 +2020,34 @@ function resetAllData() {
 function closeModal(modalId) {
   AudioFX.playClick();
   document.getElementById(modalId)?.classList.add('hidden');
+}
+
+function updateTodaysFocus() {
+  const focusEl = document.getElementById('todays-focus-task');
+  if (!focusEl) return;
+  // Find first incomplete task across all 4 phases of the execution roadmap
+  let found = null;
+  for (let p = 1; p <= 4; p++) {
+    const tasks = appState.roadmap['phase' + p] || [];
+    found = tasks.find(t => !t.completed);
+    if (found) break;
+  }
+  if (found) {
+    focusEl.textContent = 'Phase task: ' + found.title;
+  } else {
+    // Check 90-day roadmap
+    let foundNR = null;
+    for (const pKey of ['phase1', 'phase2', 'phase3']) {
+      const items = roadmap90State[pKey] || [];
+      foundNR = items.find(i => !i.completed);
+      if (foundNR) break;
+    }
+    if (foundNR) {
+      focusEl.textContent = '90-Day milestone: ' + foundNR.text;
+    } else {
+      focusEl.textContent = '🏆 All milestones completed! You are job-ready.';
+    }
+  }
 }
 
 function scrollToSection(sectionId) {
