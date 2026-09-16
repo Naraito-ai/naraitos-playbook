@@ -1,0 +1,4 @@
+deploy_result.json
+.DS_Store
+node_modules/
+*.log
