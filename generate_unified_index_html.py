@@ -1,6 +1,5 @@
 # Python script to build the complete, unified, high-fidelity Naraito's Playbook single-file web app
 import os
-import re
 
 with open(r'D:\us-remote-engineering-playbook\curated_leads.js', 'r', encoding='utf-8') as f:
     curated_leads_content = f.read()
@@ -14,9 +13,9 @@ html_content = f"""<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naraito's Playbook | Mastering US Remote Engineering Jobs</title>
-  <meta name="description" content="Naraito's Playbook: A step-by-step guide to land $60K–$120K US remote engineering jobs from anywhere. Zero experience required." />
-  <meta property="og:title" content="Naraito's Playbook | Land $60K–$120K US Remote Engineering Jobs" />
-  <meta property="og:description" content="Battle-tested blueprint for international engineers to land high-paying US remote contractor roles." />
+  <meta name="description" content="Naraito's personal step-by-step system to land a $60k–$120k US remote AI engineering role from India." />
+  <meta property="og:title" content="Naraito's Playbook — Zero to US Remote AI Job" />
+  <meta property="og:description" content="Step-by-step interactive system: learn AI skills, build proof of work, find jobs, craft your offer, build LinkedIn, launch outreach." />
   <meta property="og:url" content="https://naraitos-playbook.vercel.app/" />
   
   <!-- Tailwind CSS CDN -->
@@ -166,10 +165,8 @@ html_content = f"""<!DOCTYPE html>
     /* Reduced Motion */
     @media (prefers-reduced-motion: reduce) {{
       * {{
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
       }}
     }}
   </style>
@@ -237,40 +234,45 @@ html_content = f"""<!DOCTYPE html>
     <div id="mobile-pill-nav" class="border-t border-[#2A2A3A] bg-[#13131A]/90 backdrop-blur-md overflow-x-auto scrollbar-none py-2 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto flex items-center gap-2">
         <a href="#hero-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Home</a>
-        <a href="#roadmap-90-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">90-Day Plan</a>
-        <a href="#filters-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Diagnose</a>
+        <a href="#opportunity-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Opportunity</a>
         <a href="#reality-check-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Reality Check</a>
-        <a href="#roadmap-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Roadmap</a>
-        <a href="#blueprints-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Build Proof</a>
+        <a href="#filters-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Diagnose</a>
+        <a href="#learn-skills-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Learn Skills</a>
+        <a href="#roadmap-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Build Proof</a>
+        <a href="#job-search-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Find Jobs</a>
         <a href="#offer-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Craft Offer</a>
         <a href="#linkedin-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">LinkedIn</a>
         <a href="#outreach-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Outreach</a>
-        <a href="#job-search-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Find Jobs</a>
-        <a href="#courses-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Free Courses</a>
         <a href="#resources-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Resources</a>
-        <a href="#final-checklist-section" class="nav-pill px-3 py-1 text-xs font-medium rounded-full bg-[#1C1C27] text-slate-300 border border-[#2A2A3A]">Final Check</a>
       </div>
     </div>
   </header>
 
-  <!-- TODAY'S FOCUS CARD -->
-  <div id="todays-focus-bar" class="bg-[#13131A] border-b border-[#2A2A3A] py-2 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-      <div class="flex items-center gap-2 text-xs">
-        <span class="font-mono text-[#6C63FF] font-semibold shrink-0">Today's Focus &#8594;</span>
-        <span id="todays-focus-task" class="text-slate-300 truncate">Loading your next milestone...</span>
+  <!-- TODAY'S FOCUS CARD (PART 2) -->
+  <div id="todays-focus-bar" class="bg-[#13131A] border-b border-[#2A2A3A] py-2.5 px-4 sm:px-6 lg:px-8 sticky top-[105px] z-40">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 text-xs flex-1 min-w-0">
+        <span class="px-2 py-0.5 rounded bg-[#6C63FF]/20 text-[#6C63FF] border border-[#6C63FF]/30 font-mono font-bold shrink-0 flex items-center gap-1">
+          <i data-lucide="crosshair" class="w-3.5 h-3.5"></i> Today's Focus
+        </span>
+        <span id="todays-focus-task" class="text-slate-200 truncate font-medium">Loading your next milestone...</span>
       </div>
-      <a href="#roadmap-section" class="px-3 py-1 rounded-lg bg-[#6C63FF]/20 hover:bg-[#6C63FF]/30 text-[#6C63FF] text-xs font-medium shrink-0 transition">Jump to Task &#8594;</a>
+      <div class="flex items-center gap-3 shrink-0">
+        <span id="todays-focus-progress" class="text-[11px] font-mono text-[#00D4AA] hidden md:inline">0/24 roadmap tasks complete</span>
+        <button onclick="scrollToSection('roadmap-section')" class="px-3 py-1 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-medium shrink-0 transition flex items-center gap-1">
+          Jump to Task &rarr;
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN PLAYBOOK CONTENT -->
+  <!-- MAIN PLAYBOOK CONTENT (STEP-BY-STEP NUMBERED FLOW) -->
   <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
 
     <!-- ========================================== -->
-    <!-- SECTION 1: START HERE (HERO & ARBITRAGE) -->
+    <!-- STEP 0: HOME (HERO & ARBITRAGE CALCULATOR) -->
     <!-- ========================================== -->
-    <section id="hero-section" class="space-y-8 scroll-mt-32">
+    <section id="hero-section" class="space-y-8 scroll-mt-36">
       
       <!-- Hero Headline & Value Proposition -->
       <div class="space-y-4 max-w-4xl">
@@ -301,12 +303,23 @@ html_content = f"""<!DOCTYPE html>
           </span>
         </div>
 
-        <!-- Author Card -->
-        <div class="flex items-center gap-3 pt-4 p-4 rounded-xl bg-[#13131A] border border-[#2A2A3A] max-w-lg">
-          <div class="w-10 h-10 rounded-full bg-[#6C63FF] flex items-center justify-center text-white font-bold font-heading text-sm shrink-0">N</div>
-          <div>
-            <div class="text-sm font-bold text-white font-heading">Built by Naraito (Uduthalaboina Sai Varshith)</div>
-            <div class="text-xs text-[#8888A8]">Final-year B.Tech AI/ML &#183; BITS Warangal &#183; <a href="https://github.com/Naraito-ai" target="_blank" class="text-[#6C63FF] hover:underline">GitHub: Naraito-ai</a></div>
+        <!-- Action CTA & Readiness Check Button -->
+        <div class="pt-2 flex flex-wrap gap-3 items-center">
+          <button onclick="scrollToSection('filters-section')" class="px-5 py-2.5 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition shadow-lg shadow-indigo-500/20">
+            Check My US Readiness &rarr;
+          </button>
+          <button onclick="scrollToSection('opportunity-section')" class="px-4 py-2.5 rounded-lg bg-[#1C1C27] hover:bg-[#2A2A3A] border border-[#2A2A3A] text-slate-300 text-xs sm:text-sm font-medium transition">
+            Explore The Opportunity &darr;
+          </button>
+        </div>
+
+        <!-- Author Card (Part 3) -->
+        <div class="pt-3">
+          <div class="p-3.5 rounded-xl bg-[#13131A] border border-[#2A2A3A] text-xs text-[#8888A8] flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-[#6C63FF] flex items-center justify-center text-white font-bold font-heading text-xs shrink-0">N</div>
+            <div>
+              <span class="text-slate-200 font-semibold">Built by Naraito (Uduthalaboina Sai Varshith)</span> &middot; Final-year B.Tech AI/ML &middot; BITS Warangal &middot; GitHub: <a href="https://github.com/Naraito-ai" target="_blank" class="text-[#6C63FF] hover:underline">Naraito-ai</a>
+            </div>
           </div>
         </div>
       </div>
@@ -380,62 +393,64 @@ html_content = f"""<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- 3-Column Cost Comparison Cards Side by Side -->
+        <!-- 3-Column Cost Comparison Cards Side by Side (Wrapped in overflow-x: auto) -->
         <div class="pt-4 border-t border-[#2A2A3A] space-y-3">
           <div class="text-xs font-mono uppercase tracking-wider text-[#8888A8]">Geographic Reality Comparison</div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            
-            <!-- San Francisco Card -->
-            <div class="p-4 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-300">San Francisco / NYC</span>
-                <span class="text-[10px] font-mono text-red-400 px-1.5 py-0.5 rounded bg-red-500/10">High Burn</span>
-              </div>
-              <div class="text-xs space-y-1 text-slate-400">
-                <div class="flex justify-between"><span>Gross Salary:</span> <span class="font-mono text-slate-200">$150,000</span></div>
-                <div class="flex justify-between"><span>Rent & Living:</span> <span class="font-mono text-red-400">-$54,000</span></div>
-                <div class="flex justify-between"><span>US Fed & State Tax:</span> <span class="font-mono text-red-400">-$45,000</span></div>
-                <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-slate-200">
-                  <span>Net Annual Savings:</span>
-                  <span class="font-mono text-amber-400">~$30,000</span>
+          <div class="overflow-x-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 min-w-[600px] md:min-w-0">
+              
+              <!-- San Francisco Card -->
+              <div class="p-4 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-300">San Francisco / NYC</span>
+                  <span class="text-[10px] font-mono text-red-400 px-1.5 py-0.5 rounded bg-red-500/10">High Burn</span>
+                </div>
+                <div class="text-xs space-y-1 text-slate-400">
+                  <div class="flex justify-between"><span>Gross Salary:</span> <span class="font-mono text-slate-200">$150,000</span></div>
+                  <div class="flex justify-between"><span>Rent & Living:</span> <span class="font-mono text-red-400">-$54,000</span></div>
+                  <div class="flex justify-between"><span>US Fed & State Tax:</span> <span class="font-mono text-red-400">-$45,000</span></div>
+                  <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-slate-200">
+                    <span>Net Annual Savings:</span>
+                    <span class="font-mono text-amber-400">~$30,000</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Austin / US Remote Card -->
-            <div class="p-4 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-slate-300">Austin / US Remote</span>
-                <span class="text-[10px] font-mono text-amber-400 px-1.5 py-0.5 rounded bg-amber-500/10">Moderate Burn</span>
-              </div>
-              <div class="text-xs space-y-1 text-slate-400">
-                <div class="flex justify-between"><span>Gross Salary:</span> <span class="font-mono text-slate-200">$120,000</span></div>
-                <div class="flex justify-between"><span>Rent & Living:</span> <span class="font-mono text-amber-400">-$36,000</span></div>
-                <div class="flex justify-between"><span>US Fed Tax:</span> <span class="font-mono text-amber-400">-$28,000</span></div>
-                <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-slate-200">
-                  <span>Net Annual Savings:</span>
-                  <span class="font-mono text-amber-400">~$42,000</span>
+              <!-- Austin / US Remote Card -->
+              <div class="p-4 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-slate-300">Austin / US Remote</span>
+                  <span class="text-[10px] font-mono text-amber-400 px-1.5 py-0.5 rounded bg-amber-500/10">Moderate Burn</span>
+                </div>
+                <div class="text-xs space-y-1 text-slate-400">
+                  <div class="flex justify-between"><span>Gross Salary:</span> <span class="font-mono text-slate-200">$120,000</span></div>
+                  <div class="flex justify-between"><span>Rent & Living:</span> <span class="font-mono text-amber-400">-$36,000</span></div>
+                  <div class="flex justify-between"><span>US Fed Tax:</span> <span class="font-mono text-amber-400">-$28,000</span></div>
+                  <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-slate-200">
+                    <span>Net Annual Savings:</span>
+                    <span class="font-mono text-amber-400">~$42,000</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- India / LatAm / Global Remote Card (YOU) -->
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#00D4AA]/50 space-y-2 relative overflow-hidden">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-bold text-[#00D4AA]">Global Remote (YOU)</span>
-                <span class="text-[10px] font-mono text-[#00D4AA] px-1.5 py-0.5 rounded bg-[#00D4AA]/10">Maximum Arbitrage</span>
-              </div>
-              <div class="text-xs space-y-1 text-slate-400">
-                <div class="flex justify-between"><span>Gross Rate ($40/hr):</span> <span class="font-mono text-slate-200">$83,200</span></div>
-                <div class="flex justify-between"><span>Local Luxury Living:</span> <span class="font-mono text-emerald-400">-$9,600</span></div>
-                <div class="flex justify-between"><span>Local Taxes (44ADA):</span> <span class="font-mono text-emerald-400">-$8,500</span></div>
-                <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-[#00D4AA]">
-                  <span>Net Annual Savings:</span>
-                  <span class="font-mono text-base text-[#00D4AA]">~$65,100</span>
+              <!-- India / LatAm / Global Remote Card (YOU) -->
+              <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#00D4AA]/50 space-y-2 relative overflow-hidden">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-[#00D4AA]">Global Remote (YOU)</span>
+                  <span class="text-[10px] font-mono text-[#00D4AA] px-1.5 py-0.5 rounded bg-[#00D4AA]/10">Maximum Arbitrage</span>
+                </div>
+                <div class="text-xs space-y-1 text-slate-400">
+                  <div class="flex justify-between"><span>Gross Rate ($40/hr):</span> <span class="font-mono text-slate-200">$83,200</span></div>
+                  <div class="flex justify-between"><span>Local Luxury Living:</span> <span class="font-mono text-emerald-400">-$9,600</span></div>
+                  <div class="flex justify-between"><span>Local Taxes (44ADA):</span> <span class="font-mono text-emerald-400">-$8,500</span></div>
+                  <div class="flex justify-between pt-1 border-t border-[#2A2A3A] font-bold text-[#00D4AA]">
+                    <span>Net Annual Savings:</span>
+                    <span class="font-mono text-base text-[#00D4AA]">~$65,100</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
 
@@ -445,179 +460,172 @@ html_content = f"""<!DOCTYPE html>
         </div>
       </div>
 
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 2: YOUR 90-DAY ROADMAP (NEW) -->
-    <!-- ========================================== -->
-    <section id="roadmap-90-section" class="space-y-6 scroll-mt-32">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#6C63FF]">
-            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> STRUCTURED 90-DAY TIMELINE
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-            Your 90-Day Step-by-Step AI Roadmap
-          </h2>
-          <p class="text-sm text-[#8888A8] text-prose">
-            A day-by-day structured curriculum to take you from foundational Python to landing high-paying US remote roles.
-          </p>
-        </div>
-        <div class="text-right">
-          <div id="roadmap-90-progress-badge" class="text-xs font-mono font-bold text-[#00D4AA] bg-[#13131A] px-3 py-1.5 rounded-lg border border-[#2A2A3A]">
-            0/12 Outputs (0%)
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 Phase Cards Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <!-- Phase 1: Days 1–30 Foundations -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-              <div>
-                <span class="text-xs font-mono font-semibold text-[#6C63FF]">PHASE 1 (DAYS 1–30)</span>
-                <h3 class="text-base font-bold text-white font-heading">Foundations (Weeks 1–4)</h3>
-              </div>
-              <span class="text-xs px-2 py-0.5 rounded bg-[#6C63FF]/20 text-[#6C63FF] font-mono">Weeks 1–4</span>
-            </div>
-
-            <div class="space-y-3 text-xs text-slate-300">
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 1–7: Python Mastery & Data Structures</div>
-                <div class="text-[11px] text-[#8888A8]">OOP, generators, decorators, time complexity & algorithmic problem solving.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 8–14: Math for AI</div>
-                <div class="text-[11px] text-[#8888A8]">Linear algebra (vectors, dot products, matrix math), calculus gradients, probability & statistics.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 15–21: Data Handling & SQL</div>
-                <div class="text-[11px] text-[#8888A8]">Pandas, NumPy, data cleaning, advanced SQL queries, joins, aggregations, window functions.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 22–30: Git, APIs & Cloud Basics</div>
-                <div class="text-[11px] text-[#8888A8]">FastAPI, RESTful APIs, Git branching workflows, Docker containers, cloud setup on AWS/GCP.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Required Outputs Checkboxes (Rendered by JS) -->
-          <div class="pt-4 border-t border-[#2A2A3A] space-y-2">
-            <div class="text-[11px] font-mono uppercase text-[#6C63FF] font-semibold">Required Outputs:</div>
-            <div id="roadmap-90-p1-outputs" class="space-y-2 text-xs">
-              <!-- Dynamically populated by render90DayRoadmap() -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 2: Days 31–60 ML & Applied AI -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-              <div>
-                <span class="text-xs font-mono font-semibold text-[#00D4AA]">PHASE 2 (DAYS 31–60)</span>
-                <h3 class="text-base font-bold text-white font-heading">ML & Applied AI (Weeks 5–8)</h3>
-              </div>
-              <span class="text-xs px-2 py-0.5 rounded bg-[#00D4AA]/20 text-[#00D4AA] font-mono">Weeks 5–8</span>
-            </div>
-
-            <div class="space-y-3 text-xs text-slate-300">
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 31–38: Classic Machine Learning</div>
-                <div class="text-[11px] text-[#8888A8]">Linear/Logistic regression, Decision Trees, Random Forests, XGBoost, Scikit-Learn pipelines.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 39–45: Deep Learning & PyTorch</div>
-                <div class="text-[11px] text-[#8888A8]">Neural networks, backpropagation, CNNs, Transformers, attention mechanisms, PyTorch training loops.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 46–52: LLMs, RAG & Vector DBs</div>
-                <div class="text-[11px] text-[#8888A8]">LangChain, LlamaIndex, ChromaDB/Qdrant, embeddings, semantic search, hybrid retrieval.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 53–60: Agentic AI & Tool Calling</div>
-                <div class="text-[11px] text-[#8888A8]">CrewAI, LangGraph, autonomous agents, tool integration, function calling, structured outputs.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Required Outputs Checkboxes (Rendered by JS) -->
-          <div class="pt-4 border-t border-[#2A2A3A] space-y-2">
-            <div class="text-[11px] font-mono uppercase text-[#00D4AA] font-semibold">Required Outputs:</div>
-            <div id="roadmap-90-p2-outputs" class="space-y-2 text-xs">
-              <!-- Dynamically populated by render90DayRoadmap() -->
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 3: Days 61–90 Proof, Network & Apply -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-              <div>
-                <span class="text-xs font-mono font-semibold text-amber-400">PHASE 3 (DAYS 61–90)</span>
-                <h3 class="text-base font-bold text-white font-heading">Proof, Network & Apply (Weeks 9–12)</h3>
-              </div>
-              <span class="text-xs px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono">Weeks 9–12</span>
-            </div>
-
-            <div class="space-y-3 text-xs text-slate-300">
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 61–68: Production-Grade Capstone</div>
-                <div class="text-[11px] text-[#8888A8]">Full-stack AI app, Streamlit/FastAPI, Docker container, cloud hosting, public health check.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 69–75: Personal Brand & LinkedIn</div>
-                <div class="text-[11px] text-[#8888A8]">16 headline formulas, 5-block About, 3-slot Featured section, 3x/week build-in-public schedule.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 76–82: Cold Outreach & Job Search</div>
-                <div class="text-[11px] text-[#8888A8]">The 5-5-5 daily application system, cold DMs, recruiter outreach, Boolean search strings.</div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-semibold text-white">Day 83–90: Interview Prep & Closing</div>
-                <div class="text-[11px] text-[#8888A8]">System design, technical coding, behavioral STAR method, live project teardowns, contract negotiation.</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Required Outputs Checkboxes (Rendered by JS) -->
-          <div class="pt-4 border-t border-[#2A2A3A] space-y-2">
-            <div class="text-[11px] font-mono uppercase text-amber-400 font-semibold">Required Outputs:</div>
-            <div id="roadmap-90-p3-outputs" class="space-y-2 text-xs">
-              <!-- Dynamically populated by render90DayRoadmap() -->
-            </div>
-          </div>
-        </div>
-
+      <!-- Single Line Transition Note -->
+      <div class="p-4 rounded-xl bg-[#13131A] border border-[#2A2A3A] text-center text-xs text-slate-300 font-medium">
+        This is your personal step-by-step system to land a $60k–$120k US remote AI role. Follow the steps in order.
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 3: THE 5 FILTERS (MODULE 1) -->
+    <!-- STEP 1: THE OPPORTUNITY -->
     <!-- ========================================== -->
-    <section id="filters-section" class="space-y-6 scroll-mt-32">
+    <section id="opportunity-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="space-y-2">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> MODULE 1: ELIMINATE HIRING FRICTION
+          <span class="font-bold text-[#6C63FF]">STEP 01</span> &middot; MARKET FORCES & TIMING
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          The 5 Non-Negotiable Filters US Founders Screen For
+          The Opportunity: Why US Startups Need You Now
         </h2>
         <p class="text-sm text-[#8888A8] text-prose">
-          US startups don't reject international talent over technical knowledge — they reject them when they fail these 5 operational filters.
+          Understand the macro shift in venture-backed tech hiring and why founders prefer high-agency international contractors.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card-surface p-5 space-y-2 bg-[#13131A]">
+          <div class="w-8 h-8 rounded-lg bg-[#6C63FF]/20 text-[#6C63FF] flex items-center justify-center font-bold text-sm mb-2">1</div>
+          <h3 class="text-sm font-bold text-white font-heading">Runway Extension</h3>
+          <p class="text-xs text-[#8888A8] leading-relaxed">
+            US Seed and Series A founders extend their runway by 3x by hiring top international engineers at $60K–$120K instead of $250K+ in San Francisco.
+          </p>
+        </div>
+        <div class="card-surface p-5 space-y-2 bg-[#13131A]">
+          <div class="w-8 h-8 rounded-lg bg-[#00D4AA]/20 text-[#00D4AA] flex items-center justify-center font-bold text-sm mb-2">2</div>
+          <h3 class="text-sm font-bold text-white font-heading">Zero Visa Friction</h3>
+          <p class="text-xs text-[#8888A8] leading-relaxed">
+            You work as an independent international B2B contractor. Submit IRS Form W-8BEN, invoice via Deel/Wise, with 0% US tax withholding and zero sponsorship.
+          </p>
+        </div>
+        <div class="card-surface p-5 space-y-2 bg-[#13131A]">
+          <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm mb-2">3</div>
+          <h3 class="text-sm font-bold text-white font-heading">Async Execution Velocity</h3>
+          <p class="text-xs text-[#8888A8] leading-relaxed">
+            Startups move 24/7 with overnight development loops. With a 4-hour overlap block, tasks handed off in US evening are delivered by next morning.
+          </p>
+        </div>
+        <div class="card-surface p-5 space-y-2 bg-[#13131A]">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-sm mb-2">4</div>
+          <h3 class="text-sm font-bold text-white font-heading">Bypass Gatekeepers</h3>
+          <p class="text-xs text-[#8888A8] leading-relaxed">
+            Forget automated HR ATS portals. Deal directly with technical founders and CTOs who judge you on working code, latency metrics, and trial tasks.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 2: REALITY CHECK -->
+    <!-- ========================================== -->
+    <section id="reality-check-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-amber-400">
+          <span class="font-bold text-[#6C63FF]">STEP 02</span> &middot; MINDSET & STANDARDS
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
+          Reality Check: Local Agency vs US Remote Contractor
+        </h2>
+        <p class="text-sm text-[#8888A8] text-prose">
+          See exactly why traditional Indian prep gets you rejected — and what US founders actually evaluate.
+        </p>
+      </div>
+
+      <!-- 5-Dimension Comparison Table (Wrapped in overflow-x: auto) -->
+      <div class="card-surface overflow-x-auto bg-[#13131A]">
+        <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[650px]">
+          <thead>
+            <tr class="bg-[#1C1C27] text-slate-300 font-heading">
+              <th class="p-4 font-bold border-b border-[#2A2A3A]">Operational Dimension</th>
+              <th class="p-4 font-bold border-b border-[#2A2A3A] text-red-400">Local IT Agency Mindset</th>
+              <th class="p-4 font-bold border-b border-[#2A2A3A] text-[#00D4AA]">US Remote Contractor Standard</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#2A2A3A] text-slate-300">
+            <tr>
+              <td class="p-4 font-semibold text-white">1. Output Measurement</td>
+              <td class="p-4 text-[#8888A8]">Hours logged on tracking software, tickets closed, lines of code written.</td>
+              <td class="p-4 text-slate-200 font-medium">Shipped business features, latency reduced, server dollars saved, autonomous problem solving.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">2. Communication Flow</td>
+              <td class="p-4 text-[#8888A8]">Daily mandatory video standups, passive waiting for manager instructions.</td>
+              <td class="p-4 text-slate-200 font-medium">100% Async Slack/Loom updates (BLUF format), proactive pull requests, self-directed.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">3. Dealing with Ambiguity</td>
+              <td class="p-4 text-[#8888A8]">Demands exhaustive PRD and step-by-step specifications before writing code.</td>
+              <td class="p-4 text-slate-200 font-medium">Takes 1-sentence problem, explores trade-offs, builds a working prototype + Loom walkthrough.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">4. Cost & Business Consciousness</td>
+              <td class="p-4 text-[#8888A8]">Calls expensive APIs blindly without calculating token or infrastructure cost.</td>
+              <td class="p-4 text-slate-200 font-medium">Implements tiered routing, semantic caching, and local models to keep inference bills sub-$50/mo.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-semibold text-white">5. Career & Income Trajectory</td>
+              <td class="p-4 text-[#8888A8]">$6K–$15K/yr salary, 5% annual increments, trapped in domestic purchasing power.</td>
+              <td class="p-4 text-[#00D4AA] font-bold">$60K–$120K/yr ($30–$60/hr), 70%+ net savings, direct USD wire transfers to Wise/bank.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Workplace Scenario Simulator -->
+      <div class="card-surface p-6 space-y-6 bg-[#13131A]">
+        <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
+          <div>
+            <h3 class="text-base font-bold text-white font-heading flex items-center gap-2">
+              <i data-lucide="gamepad-2" class="w-4 h-4 text-[#6C63FF]"></i>
+              Workplace Scenario Simulator: What Would You Say?
+            </h3>
+            <p class="text-xs text-[#8888A8]">Test your on-the-job execution judgment in live US startup situations.</p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-4">
+          <div class="space-y-1">
+            <span class="text-xs font-mono text-[#6C63FF] font-semibold">SCENARIO: UNEXPECTED LLM COST SPIKE</span>
+            <h4 class="text-sm font-bold text-white font-heading">
+              "The founder excitedly suggests sending all 100K daily customer queries to GPT-4o for categorization."
+            </h4>
+            <p class="text-xs text-[#8888A8]">
+              You quickly estimate this will burn $4,500/month on OpenAI API calls and add 2 seconds of latency to every user request. How do you respond?
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 pt-2">
+            <button onclick="handleScenarioAnswer(1, 'A')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
+              <strong class="text-white block mb-1">Option A: Deferential Ticket-Taker</strong>
+              "Yes sure, I will write the Python script to call the OpenAI API for every request as you requested."
+            </button>
+            <button onclick="handleScenarioAnswer(1, 'B')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
+              <strong class="text-white block mb-1">Option B: Blunt Blocker</strong>
+              "No, that's too expensive and slow. We cannot do this."
+            </button>
+            <button onclick="handleScenarioAnswer(1, 'C')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
+              <strong class="text-white block mb-1">Option C: High-Agency Business-First Engineer (Recommended)</strong>
+              "Ran the math on this: 100K calls to GPT-4o will cost ~$4,500/mo. I've designed a 3-tier routing prototype: Regex rules catch 50% ($0), FastText catches 35% ($5/mo), and Claude Haiku only evaluates the 15% complex edge cases ($40/mo). Total cost: $45/mo (99% savings) with sub-30ms p95 latency. Recorded a 90-sec Loom with the benchmark table."
+            </button>
+          </div>
+
+          <div id="scenario-feedback-box" class="hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 3: DIAGNOSE YOURSELF -->
+    <!-- ========================================== -->
+    <section id="filters-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
+          <span class="font-bold text-[#6C63FF]">STEP 03</span> &middot; ELIMINATE HIRING FRICTION
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
+          Diagnose Yourself: The 5 Non-Negotiable Filters
+        </h2>
+        <p class="text-sm text-[#8888A8] text-prose">
+          Complete the 5-question self-audit and test your camera and audio setup.
         </p>
       </div>
 
@@ -714,6 +722,12 @@ html_content = f"""<!DOCTYPE html>
             </div>
             <p id="audit-result-desc" class="text-xs text-[#8888A8] leading-relaxed"></p>
             <div id="audit-result-recommendations" class="text-xs text-slate-300 p-3 rounded-lg bg-[#13131A] border border-[#2A2A3A]"></div>
+            
+            <div class="pt-2">
+              <button onclick="scrollToSection('roadmap-section')" class="w-full py-2.5 rounded-lg bg-[#00D4AA] hover:bg-[#00b894] text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition">
+                Proceed to Roadmap &rarr;
+              </button>
+            </div>
           </div>
 
           <div class="pt-4 border-t border-[#2A2A3A] flex items-center justify-between">
@@ -766,119 +780,206 @@ html_content = f"""<!DOCTYPE html>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 4: REALITY CHECK (MODULE 2) -->
+    <!-- STEP 4: LEARN THE RIGHT SKILLS (NEW SECTION) -->
     <!-- ========================================== -->
-    <section id="reality-check-section" class="space-y-6 scroll-mt-32">
-      <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-amber-400">
-          <i data-lucide="scale" class="w-3.5 h-3.5"></i> MODULE 2: MINDSET & STANDARDS
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          Reality Check: Local Agency vs US Remote Contractor
-        </h2>
-        <p class="text-sm text-[#8888A8] text-prose">
-          Understanding the massive gap between domestic outsourced IT culture and venture-backed US startup expectations.
-        </p>
-      </div>
-
-      <!-- 5-Dimension Comparison Table -->
-      <div class="card-surface overflow-x-auto bg-[#13131A]">
-        <table class="w-full text-left border-collapse text-xs sm:text-sm">
-          <thead>
-            <tr class="bg-[#1C1C27] text-slate-300 font-heading">
-              <th class="p-4 font-bold border-b border-[#2A2A3A]">Operational Dimension</th>
-              <th class="p-4 font-bold border-b border-[#2A2A3A] text-red-400">Local IT Agency Mindset</th>
-              <th class="p-4 font-bold border-b border-[#2A2A3A] text-[#00D4AA]">US Remote Contractor Standard</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-[#2A2A3A] text-slate-300">
-            <tr>
-              <td class="p-4 font-semibold text-white">1. Output Measurement</td>
-              <td class="p-4 text-[#8888A8]">Hours logged on tracking software, tickets closed, lines of code written.</td>
-              <td class="p-4 text-slate-200 font-medium">Shipped business features, latency reduced, server dollars saved, autonomous problem solving.</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-semibold text-white">2. Communication Flow</td>
-              <td class="p-4 text-[#8888A8]">Daily mandatory video standups, passive waiting for manager instructions.</td>
-              <td class="p-4 text-slate-200 font-medium">100% Async Slack/Loom updates (BLUF format), proactive pull requests, self-directed.</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-semibold text-white">3. Dealing with Ambiguity</td>
-              <td class="p-4 text-[#8888A8]">Demands exhaustive PRD and step-by-step specifications before writing code.</td>
-              <td class="p-4 text-slate-200 font-medium">Takes 1-sentence problem, explores trade-offs, builds a working prototype + Loom walkthrough.</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-semibold text-white">4. Cost & Business Consciousness</td>
-              <td class="p-4 text-[#8888A8]">Calls expensive APIs blindly without calculating token or infrastructure cost.</td>
-              <td class="p-4 text-slate-200 font-medium">Implements tiered routing, semantic caching, and local models to keep inference bills sub-$50/mo.</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-semibold text-white">5. Career & Income Trajectory</td>
-              <td class="p-4 text-[#8888A8]">$6K–$15K/yr salary, 5% annual increments, trapped in domestic purchasing power.</td>
-              <td class="p-4 text-[#00D4AA] font-bold">$60K–$120K/yr ($30–$60/hr), 70%+ net savings, direct USD wire transfers to Wise/bank.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Workplace Scenario Simulator -->
-      <div class="card-surface p-6 space-y-6 bg-[#13131A]">
-        <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-          <div>
-            <h3 class="text-base font-bold text-white font-heading flex items-center gap-2">
-              <i data-lucide="gamepad-2" class="w-4 h-4 text-[#6C63FF]"></i>
-              Workplace Scenario Simulator
-            </h3>
-            <p class="text-xs text-[#8888A8]">Select a scenario to test your on-the-job execution judgment in live US startup situations.</p>
-          </div>
-        </div>
-
-        <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-4">
-          <div class="space-y-1">
-            <span class="text-xs font-mono text-[#6C63FF] font-semibold">SCENARIO: UNEXPECTED LLM COST SPIKE</span>
-            <h4 class="text-sm font-bold text-white font-heading">
-              "The founder excitedly suggests sending all 100K daily customer queries to GPT-4o for categorization."
-            </h4>
-            <p class="text-xs text-[#8888A8]">
-              You quickly estimate this will burn $4,500/month on OpenAI API calls and add 2 seconds of latency to every user request. How do you respond?
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 gap-2.5 pt-2">
-            <button onclick="handleScenarioAnswer(1, 'A')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
-              <strong class="text-white block mb-1">Option A: Deferential Ticket-Taker</strong>
-              "Yes sure, I will write the Python script to call the OpenAI API for every request as you requested."
-            </button>
-            <button onclick="handleScenarioAnswer(1, 'B')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
-              <strong class="text-white block mb-1">Option B: Blunt Blocker</strong>
-              "No, that's too expensive and slow. We cannot do this."
-            </button>
-            <button onclick="handleScenarioAnswer(1, 'C')" class="p-3.5 rounded-xl bg-[#13131A] hover:bg-[#1C1C27] border border-[#2A2A3A] hover:border-[#6C63FF]/50 text-left text-xs text-slate-300 transition">
-              <strong class="text-white block mb-1">Option C: High-Agency Business-First Engineer (Recommended)</strong>
-              "Ran the math on this: 100K calls to GPT-4o will cost ~$4,500/mo. I've designed a 3-tier routing prototype: Regex rules catch 50% ($0), FastText catches 35% ($5/mo), and Claude Haiku only evaluates the 15% complex edge cases ($40/mo). Total cost: $45/mo (99% savings) with sub-30ms p95 latency. Recorded a 90-sec Loom with the benchmark table."
-            </button>
-          </div>
-
-          <div id="scenario-feedback-box" class="hidden"></div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 5: EXECUTION ROADMAP (MODULE 3) -->
-    <!-- ========================================== -->
-    <section id="roadmap-section" class="space-y-6 scroll-mt-32">
+    <section id="learn-skills-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#6C63FF]">
-            <i data-lucide="milestone" class="w-3.5 h-3.5"></i> MODULE 3: 24-MILESTONE EXECUTION SYSTEM
+            <span class="font-bold text-[#6C63FF]">STEP 04</span> &middot; STRUCTURED CURRICULUM
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-            Execution Roadmap: The 4-Phase System
+            Learn The Right Skills
           </h2>
           <p class="text-sm text-[#8888A8] text-prose">
-            A complete step-by-step checklist to take you from 0 experience to a signed $60K–$120K US remote contract.
+            Master Python, data handling, machine learning, generative AI, and MLOps through a structured path.
+          </p>
+        </div>
+        <div class="text-right">
+          <div id="skills-roadmap-progress-badge" class="text-xs font-mono font-bold text-[#00D4AA] bg-[#13131A] px-3 py-1.5 rounded-lg border border-[#2A2A3A]">
+            0/7 Steps Complete (0%)
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 Tabs Navigation -->
+      <div class="card-surface bg-[#13131A] overflow-hidden">
+        <div class="border-b border-[#2A2A3A] bg-[#1C1C27] overflow-x-auto scrollbar-none flex">
+          <button onclick="switchLearnSkillsTab('roadmap')" id="skills-tab-roadmap" class="tab-btn px-4 py-3 text-xs font-semibold text-white bg-[#6C63FF] whitespace-nowrap">
+            AI Roadmap
+          </button>
+          <button onclick="switchLearnSkillsTab('skills')" id="skills-tab-skills" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Must-Have Skills
+          </button>
+          <button onclick="switchLearnSkillsTab('courses')" id="skills-tab-courses" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Free Courses
+          </button>
+        </div>
+
+        <!-- Tab 1: AI Roadmap Vertical Stepper -->
+        <div id="skills-content-roadmap" class="p-6 space-y-6">
+          <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-white font-heading">7-Step Interactive AI Roadmap</h3>
+              <p class="text-xs text-[#8888A8]">Check off each step as you complete the learning and build outputs.</p>
+            </div>
+            <div class="w-28 bg-[#0A0A0F] h-2 rounded-full overflow-hidden border border-[#2A2A3A]">
+              <div id="skills-roadmap-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Vertical Stepper Items Container (Rendered dynamically) -->
+          <div id="skills-stepper-container" class="space-y-4">
+            <!-- Dynamically populated by renderSkillsRoadmap() -->
+          </div>
+
+          <div class="pt-2 flex justify-end">
+            <button onclick="resetSkillsRoadmap()" class="text-xs text-[#8888A8] hover:text-white flex items-center gap-1 transition">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Reset AI Roadmap
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 2: Must-Have Skills (2 Columns) -->
+        <div id="skills-content-skills" class="hidden p-6 space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Left Column: Must-Have Technical Skills -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3">
+              <div class="flex items-center gap-2 text-xs font-mono font-bold text-[#00D4AA] uppercase pb-2 border-b border-[#2A2A3A]">
+                <i data-lucide="code-2" class="w-4 h-4"></i> Must-Have Technical Skills
+              </div>
+              <ol class="space-y-2 text-xs text-slate-200">
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">1. Python Programming</strong> &mdash; OOP, async, data structures, profiling</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">2. SQL and Data Handling</strong> &mdash; Pandas, DuckDB, joins, window functions</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">3. Machine Learning Fundamentals</strong> &mdash; Scikit-Learn, XGBoost, evaluation</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">4. LLM Application Development</strong> &mdash; Prompting, function calling, structured outputs</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">5. RAG and Vector Search</strong> &mdash; Qdrant, Chroma, chunking, hybrid search</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">6. AI Agents and Automation</strong> &mdash; LangGraph, CrewAI, multi-agent workflows</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">7. AI Evaluation</strong> &mdash; Ragas, precision/recall, toxicity & hallucination checks</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">8. Backend Development</strong> &mdash; FastAPI, Redis caching, REST endpoints</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">9. Deployment and MLOps</strong> &mdash; Docker, Prometheus, CI/CD, AWS/GCP</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium"><strong class="text-white">10. Security and Responsible AI</strong> &mdash; Prompt injection defense, PII masking</li>
+              </ol>
+            </div>
+
+            <!-- Right Column: Important Complementary Skills -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3">
+              <div class="flex items-center gap-2 text-xs font-mono font-bold text-[#6C63FF] uppercase pb-2 border-b border-[#2A2A3A]">
+                <i data-lucide="layers" class="w-4 h-4"></i> Important Complementary Skills
+              </div>
+              <ul class="space-y-2 text-xs text-slate-200">
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Git and GitHub workflows, PR etiquette, issue tracking</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Basic system design & microservices latency trade-offs</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Cloud platforms (AWS, GCP, Modal, Fly.io, Render)</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Data engineering fundamentals (Pipelines, ETL, streaming)</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Technical writing (Architecture teardowns, documentation)</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Product thinking (Translating business needs to code)</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Communication and presentation (Async Loom walkthroughs)</li>
+                <li class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] font-medium">&bull; Understanding business requirements & cost consciousness</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Bottom Note Callout -->
+          <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#00D4AA]/40 text-xs text-slate-300 leading-relaxed italic">
+            "Companies do not hire AI engineers only for knowing models. They hire people who can convert AI capabilities into reliable products."
+          </div>
+        </div>
+
+        <!-- Tab 3: Free Courses -->
+        <div id="skills-content-courses" class="hidden p-6 space-y-6">
+          <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
+            <div>
+              <h3 class="text-sm font-bold text-white font-heading">Curated Free Courses & Learning Paths</h3>
+              <p class="text-xs text-[#8888A8]">100% free courses from top industry organizations.</p>
+            </div>
+            <span class="px-2.5 py-1 rounded bg-[#00D4AA]/10 text-[#00D4AA] border border-[#00D4AA]/30 text-xs font-mono font-semibold">
+              Recommended Order
+            </span>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#6C63FF]/40 text-xs text-slate-300 italic">
+            "Do not try to complete every course. Select one course from each stage and build a small project after completing it."
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>1. OpenAI AI Foundations or IBM AI Fundamentals</span>
+                <span class="text-[10px] font-mono text-[#00D4AA]">Stage 1: Beginner</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">Beginner intro to AI, LLMs, responsible AI and prompting. Good starting point for complete beginners.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>2. Google Machine Learning Crash Course</span>
+                <span class="text-[10px] font-mono text-[#6C63FF]">Stage 2: Core ML</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">Practical ML with videos, interactive visualizations and exercises. Best for learners who already understand basic Python and mathematics.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>3. Microsoft AI for Beginners</span>
+                <span class="text-[10px] font-mono text-amber-400">Stage 3: Deep Learning</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">24-lesson curriculum covering neural networks, computer vision, NLP, deep learning and AI ethics.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>4. Microsoft Generative AI for Beginners</span>
+                <span class="text-[10px] font-mono text-sky-400">Stage 4: GenAI</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">21 lessons on building Generative AI applications using Python or TypeScript. Covers prompting, RAG, vector databases and responsible AI.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>5. Hugging Face LLM Course</span>
+                <span class="text-[10px] font-mono text-rose-400">Stage 5: Transformers</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">Detailed course on Transformers, tokenizers, datasets, fine-tuning and sharing AI applications.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>6. Microsoft AI Agents Course or Hugging Face AI Agents Course</span>
+                <span class="text-[10px] font-mono text-emerald-400">Stage 6: Agents</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">Learn to build AI agents using smolagents, LlamaIndex and LangGraph.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+              <div class="font-bold text-white flex items-center justify-between">
+                <span>7. AWS, NVIDIA or Databricks</span>
+                <span class="text-[10px] font-mono text-indigo-400">Stage 7: Cloud & Scale</span>
+              </div>
+              <p class="text-[11px] text-[#8888A8]">Based on the jobs you want to target. Learning content is free, certification exams are separate.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 5: BUILD PROOF OF WORK -->
+    <!-- ========================================== -->
+    <section id="roadmap-section" class="space-y-8 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
+            <span class="font-bold text-[#6C63FF]">STEP 05</span> &middot; PRODUCTION ARTIFACTS
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
+            Build Proof of Work
+          </h2>
+          <p class="text-sm text-[#8888A8] text-prose">
+            Build 1–2 production-grade projects mapped to real startup job descriptions.
           </p>
         </div>
         <div class="text-right flex items-center gap-3">
@@ -887,60 +988,15 @@ html_content = f"""<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- Phase Tabs Navigation -->
-      <div class="card-surface bg-[#13131A] overflow-hidden">
-        <div class="border-b border-[#2A2A3A] bg-[#1C1C27] overflow-x-auto scrollbar-none flex">
-          <button onclick="switchRoadmapPhase(1)" id="phase-tab-1" class="tab-btn active px-4 py-3 text-xs font-semibold text-white bg-[#6C63FF] whitespace-nowrap">
-            Phase 1: Proof of Work
-          </button>
-          <button onclick="switchRoadmapPhase(2)" id="phase-tab-2" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
-            Phase 2: Risk Reversal
-          </button>
-          <button onclick="switchRoadmapPhase(3)" id="phase-tab-3" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
-            Phase 3: LinkedIn Magnet
-          </button>
-          <button onclick="switchRoadmapPhase(4)" id="phase-tab-4" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
-            Phase 4: Outbound & Closing
-          </button>
+      <!-- 6 Blueprints Section -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-2">
+          <h3 class="text-base font-bold text-white font-heading">6 Production-Grade Anti-Resume Blueprints</h3>
+          <span class="text-xs font-mono text-[#00D4AA]">Zero Toy Projects</span>
         </div>
-
-        <!-- 4 Phase Checklist Containers (Rendered by JS) -->
-        <div class="p-6">
-          <div id="phase-content-1" class="space-y-3">
-            <div id="phase-1-checklist" class="space-y-3"></div>
-          </div>
-          <div id="phase-content-2" class="hidden space-y-3">
-            <div id="phase-2-checklist" class="space-y-3"></div>
-          </div>
-          <div id="phase-content-3" class="hidden space-y-3">
-            <div id="phase-3-checklist" class="space-y-3"></div>
-          </div>
-          <div id="phase-content-4" class="hidden space-y-3">
-            <div id="phase-4-checklist" class="space-y-3"></div>
-          </div>
+        <div id="blueprints-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered via JS -->
         </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 6: PROJECT BLUEPRINTS -->
-    <!-- ========================================== -->
-    <section id="blueprints-section" class="space-y-6 scroll-mt-32">
-      <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-          <i data-lucide="boxes" class="w-3.5 h-3.5"></i> PRODUCTION-GRADE PROOF OF WORK
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          6 Production-Grade Anti-Resume Blueprints
-        </h2>
-        <p class="text-sm text-[#8888A8] text-prose">
-          Generic todo apps and basic Titanic Kaggle notebooks get ignored. Build these 6 production-grade architectures that prove you can handle enterprise traffic and cost constraints.
-        </p>
-      </div>
-
-      <!-- 6 Blueprints Container (Rendered dynamically by renderBlueprints()) -->
-      <div id="blueprints-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered via JS -->
       </div>
 
       <!-- JD Reverse-Engineering Project Mapper -->
@@ -967,7 +1023,7 @@ html_content = f"""<!DOCTYPE html>
           </div>
           <div class="lg:col-span-6 p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex flex-col justify-between space-y-2">
             <div id="jd-output-content" class="text-xs text-slate-300">
-              <p class="text-[#8888A8] italic">Click "Map Optimal Project Architecture" or "Load Sample JD" to see tailored architectural recommendations and anti-resume proof points.</p>
+              <p class="text-[#8888A8] italic">Your output will appear here.</p>
             </div>
             <div class="pt-2 border-t border-[#2A2A3A] flex justify-end">
               <button onclick="copyJDOutput()" class="text-xs text-[#00D4AA] hover:underline flex items-center gap-1">
@@ -978,21 +1034,493 @@ html_content = f"""<!DOCTYPE html>
         </div>
       </div>
 
+      <!-- Execution Roadmap: The 4-Phase System -->
+      <div class="card-surface bg-[#13131A] overflow-hidden">
+        <div class="p-4 border-b border-[#2A2A3A] bg-[#1C1C27] flex items-center justify-between">
+          <h3 class="text-base font-bold text-white font-heading">Module 3: 24-Milestone Execution System</h3>
+          <span class="text-xs font-mono text-[#00D4AA]">4 Phases &middot; 24 Tasks</span>
+        </div>
+        <div class="border-b border-[#2A2A3A] bg-[#1C1C27] overflow-x-auto scrollbar-none flex">
+          <button onclick="switchRoadmapPhase(1)" id="phase-tab-1" class="tab-btn active px-4 py-3 text-xs font-semibold text-white bg-[#6C63FF] whitespace-nowrap">
+            Phase 1: Proof of Work
+          </button>
+          <button onclick="switchRoadmapPhase(2)" id="phase-tab-2" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Phase 2: Risk Reversal
+          </button>
+          <button onclick="switchRoadmapPhase(3)" id="phase-tab-3" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Phase 3: LinkedIn Magnet
+          </button>
+          <button onclick="switchRoadmapPhase(4)" id="phase-tab-4" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Phase 4: Outbound & Closing
+          </button>
+        </div>
+
+        <!-- 4 Phase Checklist Containers -->
+        <div class="p-6">
+          <div id="phase-content-1" class="space-y-3">
+            <div id="phase-1-checklist" class="space-y-3"></div>
+          </div>
+          <div id="phase-content-2" class="hidden space-y-3">
+            <div id="phase-2-checklist" class="space-y-3"></div>
+          </div>
+          <div id="phase-content-3" class="hidden space-y-3">
+            <div id="phase-3-checklist" class="space-y-3"></div>
+          </div>
+          <div id="phase-content-4" class="hidden space-y-3">
+            <div id="phase-4-checklist" class="space-y-3"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 7: OFFER FRAMEWORK -->
+    <!-- STEP 6: FIND THE RIGHT JOBS (NEW SECTION) -->
     <!-- ========================================== -->
-    <section id="offer-section" class="space-y-6 scroll-mt-32">
+    <section id="job-search-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-amber-400">
-          <i data-lucide="badge-percent" class="w-3.5 h-3.5"></i> ZERO-RISK HIRING FRAMEWORK
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
+          <span class="font-bold text-[#6C63FF]">STEP 06</span> &middot; MARKET DISCOVERY
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          The Risk-Reversal Offer Framework
+          Find The Right Jobs
         </h2>
         <p class="text-sm text-[#8888A8] text-prose">
-          How to eliminate 100% of the hiring friction for US founders and get hired on a 1-week paid trial.
+          Discover uncrowded opportunities across curated startup boards, exact job title variants, and Boolean search strings.
+        </p>
+      </div>
+
+      <!-- Step 6 Tabs Container -->
+      <div class="card-surface bg-[#13131A] overflow-hidden">
+        <div class="border-b border-[#2A2A3A] bg-[#1C1C27] overflow-x-auto scrollbar-none flex">
+          <button onclick="switchFindJobsTab('platforms')" id="findjobs-tab-platforms" class="tab-btn px-4 py-3 text-xs font-semibold text-white bg-[#6C63FF] whitespace-nowrap">
+            Job Platforms (28)
+          </button>
+          <button onclick="switchFindJobsTab('titles')" id="findjobs-tab-titles" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Job Titles
+          </button>
+          <button onclick="switchFindJobsTab('strings')" id="findjobs-tab-strings" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Search Strings
+          </button>
+          <button onclick="switchFindJobsTab('roles')" id="findjobs-tab-roles" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Open Roles
+          </button>
+        </div>
+
+        <!-- Tab 1: Job Platforms (28 Platforms in 5 Categories) -->
+        <div id="findjobs-content-platforms" class="p-6 space-y-6 text-xs">
+          
+          <!-- Category 1 -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-sm text-white font-mono uppercase tracking-wider text-[#6C63FF] border-b border-[#2A2A3A] pb-2">
+              AI, STARTUP & ENTRY-LEVEL PLATFORMS
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>1. Wellfound</span> <a href="https://wellfound.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Best for startup jobs and direct access to founders. Check "Hires Remotely From" section before applying.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>2. Y Combinator: Work at a Startup</span> <a href="https://www.ycombinator.com/jobs?remote=true" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Funded YC startups, early-stage AI companies and Founding AI Engineer roles.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>3. Simplify Jobs</span> <a href="https://simplify.jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">AI, ML, internship, new-grad and entry-level opportunities with application tracking tools.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>4. AIJobs.net</span> <a href="https://aijobs.net" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Dedicated job board for AI, ML, NLP, computer vision, data science and MLOps roles.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>5. Built In</span> <a href="https://builtin.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Tech and startup companies with salary, benefits and company culture info.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>6. Startup Jobs</span> <a href="https://startup.jobs/remote-jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Large startup database with filters for remote, internships and tech stack.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>7. F6S Jobs</span> <a href="https://www.f6s.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Startups, accelerators and growing tech companies across different countries.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-sm text-white font-mono uppercase tracking-wider text-[#00D4AA] border-b border-[#2A2A3A] pb-2">
+              REMOTE-FIRST JOB BOARDS
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>8. Himalayas</span> <a href="https://himalayas.app/jobs/worldwide" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Worldwide remote jobs with filters for country, salary, seniority, timezone and employment type.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>9. Remote Rocketship</span> <a href="https://www.remoterocketship.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Searches company career pages for remote opportunities not visible on major job boards.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>10. We Work Remotely</span> <a href="https://weworkremotely.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Remote AI, engineering, data, product and software development roles.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>11. Remote OK</span> <a href="https://remoteok.com/remote-ai-jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Remote AI and engineering jobs with filters for salary, region, technology and experience.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>12. Remotive</span> <a href="https://remotive.com/remote-ai-jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Curated remote software development, data and technology jobs with clearly mentioned location restrictions.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>13. Working Nomads</span> <a href="https://www.workingnomads.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Fully remote, full-time, part-time and contractual roles across technology careers.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>14. Remote.co</span> <a href="https://remote.co" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Remote-friendly companies and developer, data, product and technical roles.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>15. Jobspresso</span> <a href="https://jobspresso.co" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Hand-picked remote opportunities from companies in development, data, product and operations.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>16. FlexJobs</span> <a href="https://www.flexjobs.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Screened remote and flexible job listings. Full access may require a paid subscription.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3 -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-sm text-white font-mono uppercase tracking-wider text-amber-400 border-b border-[#2A2A3A] pb-2">
+              FREELANCE & VETTED TALENT NETWORKS
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>17. Arc</span> <a href="https://arc.dev" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Full-time and freelance ML, Generative AI, deep learning and MLOps opportunities.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>18. Braintrust</span> <a href="https://www.usebraintrust.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Remote AI, ML, design and engineering contracts. More suitable for candidates with some professional experience.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>19. Turing</span> <a href="https://www.turing.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Matches developers with remote international AI opportunities after profile and skill assessments.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>20. Toptal</span> <a href="https://www.toptal.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Highly selective freelance network for experienced developers, data scientists and AI professionals.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>21. Contra</span> <a href="https://contra.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Independent projects and AI, automation or software development portfolio showcase.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>22. Upwork</span> <a href="https://www.upwork.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Smaller AI automation, chatbot, RAG, data analysis and machine learning projects for paid proof of work.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4 -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-sm text-white font-mono uppercase tracking-wider text-sky-400 border-b border-[#2A2A3A] pb-2">
+              BROAD & INDIA-FOCUSED PLATFORMS
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>23. LinkedIn Jobs</span> <a href="https://www.linkedin.com/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Use job-title, experience, location and "past week" filters. Combine with referrals and messages to recruiters.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>24. Indeed</span> <a href="https://in.indeed.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">High-volume aggregator for discovering AI openings and understanding skills companies demand.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>25. Cutshort</span> <a href="https://cutshort.io/jobs" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">India-focused technology platform with startup, product-company, AI and remote engineering roles.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="flex justify-between font-bold text-white"><span>26. Instahyre</span> <a href="https://www.instahyre.com" target="_blank" class="text-[#00D4AA] hover:underline flex items-center gap-0.5">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a></div>
+                <p class="text-[11px] text-[#8888A8]">Curated platform for Indian technology professionals including AI, ML, data and software engineering.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 5 -->
+          <div class="space-y-3">
+            <h4 class="font-bold text-sm text-white font-mono uppercase tracking-wider text-rose-400 border-b border-[#2A2A3A] pb-2">
+              TWO MORE DISCOVERY METHODS
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="font-bold text-white">27. Direct Company Career Pages</div>
+                <p class="text-[11px] text-[#8888A8]">Create a list of 30 AI companies and check their career pages every week. Many positions appear on Greenhouse, Ashby or Lever before reaching LinkedIn.</p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
+                <div class="font-bold text-white">28. GitHub, X and Founder Communities</div>
+                <p class="text-[11px] text-[#8888A8]">Follow AI startup founders, open-source maintainers and engineering leaders. Early-stage companies often announce internships and founding-team roles directly through their communities.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Note Callout -->
+          <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#6C63FF]/40 text-xs text-slate-300 italic">
+            "Do not use all platforms daily. Pick: 2 startup platforms + 2 remote-first + 1 broad + 1 India-focused + 1 freelance if relevant."
+          </div>
+
+        </div>
+
+        <!-- Tab 2: Job Titles (4 Columns) -->
+        <div id="findjobs-content-titles" class="hidden p-6 space-y-6 text-xs">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
+              <div class="font-mono font-bold text-[#6C63FF] border-b border-[#2A2A3A] pb-1.5 uppercase">BEGINNER & INTERNSHIP</div>
+              <ul class="space-y-1 text-slate-200">
+                <li>&bull; AI Engineer Intern</li>
+                <li>&bull; Machine Learning Intern</li>
+                <li>&bull; Data Science Intern</li>
+                <li>&bull; AI Research Intern</li>
+                <li>&bull; Junior Machine Learning Engineer</li>
+                <li>&bull; Associate AI Engineer</li>
+                <li>&bull; Graduate AI Engineer</li>
+                <li>&bull; Python AI Developer</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
+              <div class="font-mono font-bold text-[#00D4AA] border-b border-[#2A2A3A] pb-1.5 uppercase">APPLIED AI & GENERATIVE AI</div>
+              <ul class="space-y-1 text-slate-200">
+                <li>&bull; Applied AI Engineer</li>
+                <li>&bull; AI Product Engineer</li>
+                <li>&bull; Generative AI Developer</li>
+                <li>&bull; LLM Engineer</li>
+                <li>&bull; RAG Engineer</li>
+                <li>&bull; AI Automation Engineer</li>
+                <li>&bull; AI Agent Engineer</li>
+                <li>&bull; Conversational AI Engineer</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
+              <div class="font-mono font-bold text-amber-400 border-b border-[#2A2A3A] pb-1.5 uppercase">ML & PLATFORM</div>
+              <ul class="space-y-1 text-slate-200">
+                <li>&bull; Machine Learning Engineer</li>
+                <li>&bull; Deep Learning Engineer</li>
+                <li>&bull; NLP Engineer</li>
+                <li>&bull; Computer Vision Engineer</li>
+                <li>&bull; MLOps Engineer</li>
+                <li>&bull; AI Platform Engineer</li>
+                <li>&bull; Model Evaluation Engineer</li>
+                <li>&bull; Data Engineer, AI/ML</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
+              <div class="font-mono font-bold text-sky-400 border-b border-[#2A2A3A] pb-1.5 uppercase">CUSTOMER-FACING & STARTUP</div>
+              <ul class="space-y-1 text-slate-200">
+                <li>&bull; AI Solutions Engineer</li>
+                <li>&bull; Forward Deployed Engineer</li>
+                <li>&bull; AI Implementation Engineer</li>
+                <li>&bull; AI Technical Support Engineer</li>
+                <li>&bull; AI Developer Advocate</li>
+                <li>&bull; Founding AI Engineer</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#00D4AA]/40 text-xs text-slate-300 italic">
+            "Do not search only for 'AI Engineer.' Different companies use different titles for similar work. Select five titles that match your current skills and create job alerts for them."
+          </div>
+        </div>
+
+        <!-- Tab 3: Search Strings (10 Copyable Boolean Strings) -->
+        <div id="findjobs-content-strings" class="hidden p-6 space-y-6 text-xs">
+          <div class="space-y-2">
+            
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">"Applied AI Engineer" AND (remote OR worldwide)</code>
+              <button onclick="copySearchString('\"Applied AI Engineer\" AND (remote OR worldwide)')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">("LLM Engineer" OR "RAG Engineer") AND (junior OR intern)</code>
+              <button onclick="copySearchString('(\"LLM Engineer\" OR \"RAG Engineer\") AND (junior OR intern)')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">"AI Product Engineer" AND Python AND remote</code>
+              <button onclick="copySearchString('\"AI Product Engineer\" AND Python AND remote')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">("Machine Learning Intern" OR "AI Intern") AND startup</code>
+              <button onclick="copySearchString('(\"Machine Learning Intern\" OR \"AI Intern\") AND startup')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">"Generative AI Developer" AND (India OR APAC OR worldwide)</code>
+              <button onclick="copySearchString('\"Generative AI Developer\" AND (India OR APAC OR worldwide)')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">("Forward Deployed Engineer" OR "AI Solutions Engineer") AND remote</code>
+              <button onclick="copySearchString('(\"Forward Deployed Engineer\" OR \"AI Solutions Engineer\") AND remote')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">site:jobs.ashbyhq.com ("AI Engineer" OR "LLM Engineer") remote</code>
+              <button onclick="copySearchString('site:jobs.ashbyhq.com (\"AI Engineer\" OR \"LLM Engineer\") remote')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">site:jobs.lever.co ("AI Engineer" OR "Machine Learning Engineer") India</code>
+              <button onclick="copySearchString('site:jobs.lever.co (\"AI Engineer\" OR \"Machine Learning Engineer\") India')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">site:boards.greenhouse.io ("AI Intern" OR "ML Intern")</code>
+              <button onclick="copySearchString('site:boards.greenhouse.io (\"AI Intern\" OR \"ML Intern\")')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-3">
+              <code class="font-mono text-slate-200 truncate">site:ycombinator.com/companies ("AI Engineer" OR "Machine Learning") "Remote (IN)"</code>
+              <button onclick="copySearchString('site:ycombinator.com/companies (\"AI Engineer\" OR \"Machine Learning\") \"Remote (IN)\"')" class="px-3 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold shrink-0">Copy</button>
+            </div>
+
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#6C63FF]/40 text-xs text-slate-300 italic">
+            "Apply only to positions posted within the last 7 days. Create alerts so new roles come to you."
+          </div>
+        </div>
+
+        <!-- Tab 4: Open Roles (5 Verified Cards) -->
+        <div id="findjobs-content-roles" class="hidden p-6 space-y-6 text-xs">
+          <div class="p-3.5 rounded-xl bg-[#1C1C27] border border-amber-500/40 text-xs text-amber-300">
+            Note: "Job openings close quickly. Verify location, eligibility and current status on the official page before applying."
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <!-- Card 1 -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-sm">Machine Learning Engineer Intern (Paid)</h4>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#00D4AA] font-bold">Internship</span>
+                </div>
+                <div class="text-slate-300 font-medium">Company: Peakflo</div>
+                <div class="text-[11px] text-[#8888A8]">Location: India, Remote</div>
+                <div class="text-[11px] text-[#8888A8]">Type: Paid internship — Students and freshers</div>
+                <div class="text-[11px] text-slate-300 font-mono pt-1">Skills: Python, machine learning, NLP, prompt engineering</div>
+              </div>
+              <div class="pt-3 border-t border-[#2A2A3A]">
+                <a href="https://www.ycombinator.com/companies/peakflo/jobs/I4Ehwpd-machine-learning-ml-engineer-intern-paid-india-remote" target="_blank" class="w-full py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  Apply on YC <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-sm">AI Applied Engineer — Voice First Internship</h4>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-[#00D4AA] font-bold">Internship</span>
+                </div>
+                <div class="text-slate-300 font-medium">Company: SuperKalam</div>
+                <div class="text-[11px] text-[#8888A8]">Location: India, Remote</div>
+                <div class="text-[11px] text-[#8888A8]">Type: Internship — Voice AI and applied ML</div>
+                <div class="text-[11px] text-slate-300 font-mono pt-1">Skills: Python, Node.js, machine learning</div>
+              </div>
+              <div class="pt-3 border-t border-[#2A2A3A]">
+                <a href="https://www.ycombinator.com/companies/superkalam/jobs/DKwCjWa-ai-applied-engineer-voice-first-internship" target="_blank" class="w-full py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  Apply on YC <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-sm">Forward Deployed Engineer</h4>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#6C63FF]/10 text-[#6C63FF] font-bold">Full-Time</span>
+                </div>
+                <div class="text-slate-300 font-medium">Company: Peakflo</div>
+                <div class="text-[11px] text-[#8888A8]">Location: India, Remote</div>
+                <div class="text-[11px] text-[#8888A8]">Type: Full-time — 1+ year experience</div>
+                <div class="text-[11px] text-slate-300 font-mono pt-1">Skills: Python, SQL, machine learning, NLP, customer problem-solving</div>
+              </div>
+              <div class="pt-3 border-t border-[#2A2A3A]">
+                <a href="https://www.ycombinator.com/companies/peakflo/jobs/vIrPzMj-forward-deployed-engineer-fde-india-remote" target="_blank" class="w-full py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  Apply on YC <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-sm">Software Engineer, AI</h4>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#6C63FF]/10 text-[#6C63FF] font-bold">Full-Time</span>
+                </div>
+                <div class="text-slate-300 font-medium">Company: Respan</div>
+                <div class="text-[11px] text-[#8888A8]">Location: India, Remote</div>
+                <div class="text-[11px] text-[#8888A8]">Type: Full-time — 3+ years</div>
+                <div class="text-[11px] text-slate-300 font-mono pt-1">Focus: AI agents, evaluation, observability and production systems</div>
+              </div>
+              <div class="pt-3 border-t border-[#2A2A3A]">
+                <a href="https://www.ycombinator.com/companies/respan/jobs" target="_blank" class="w-full py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  Apply on YC <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-sm">AI Software Engineer, Python</h4>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#6C63FF]/10 text-[#6C63FF] font-bold">Full-Time</span>
+                </div>
+                <div class="text-slate-300 font-medium">Company: Zimperium</div>
+                <div class="text-[11px] text-[#8888A8]">Location: India, Remote (Bangalore)</div>
+                <div class="text-[11px] text-[#8888A8]">Type: Full-time</div>
+                <div class="text-[11px] text-slate-300 font-mono pt-1">Focus: AI development with strong Python and software engineering fundamentals</div>
+              </div>
+              <div class="pt-3 border-t border-[#2A2A3A]">
+                <a href="https://jobs.lever.co/zimperium?location=Bangalore%2C+" target="_blank" class="w-full py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                  Apply on Lever <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- STEP 7: CRAFT YOUR OFFER -->
+    <!-- ========================================== -->
+    <section id="offer-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-amber-400">
+          <span class="font-bold text-[#6C63FF]">STEP 07</span> &middot; ZERO-RISK HIRING FRAMEWORK
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
+          Craft Your Offer: The Risk-Reversal Framework
+        </h2>
+        <p class="text-sm text-[#8888A8] text-prose">
+          Eliminate every reason a founder has to say no before they ask.
         </p>
       </div>
 
@@ -1051,22 +1579,21 @@ html_content = f"""<!DOCTYPE html>
           <i data-lucide="file-text" class="w-4 h-4"></i> Open Proposal Generator
         </button>
       </div>
-
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 8: LINKEDIN STUDIO -->
+    <!-- STEP 8: BUILD YOUR LINKEDIN -->
     <!-- ========================================== -->
-    <section id="linkedin-section" class="space-y-6 scroll-mt-32">
+    <section id="linkedin-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="space-y-2">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-          <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> INBOUND AUTHORITY MAGNET
+          <span class="font-bold text-[#6C63FF]">STEP 08</span> &middot; INBOUND AUTHORITY MAGNET
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          LinkedIn Optimization Studio
+          Build Your LinkedIn: Inbound Authority Magnet
         </h2>
         <p class="text-sm text-[#8888A8] text-prose">
-          Transform your profile into an inbound lead generator and execute a 30-day authority launch plan.
+          Build your LinkedIn into an inbound system that makes founders want to reach out to you.
         </p>
       </div>
 
@@ -1081,9 +1608,6 @@ html_content = f"""<!DOCTYPE html>
           <button onclick="switchLinkedInTab('about')" id="li-tab-about" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
             5-Block About Generator
           </button>
-          <button onclick="switchLinkedInTab('checklist')" id="li-tab-checklist" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
-            Profile Checklist
-          </button>
           <button onclick="switchLinkedInTab('featured')" id="li-tab-featured" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
             3-Slot Featured Strategy
           </button>
@@ -1092,6 +1616,9 @@ html_content = f"""<!DOCTYPE html>
           </button>
           <button onclick="switchLinkedInTab('launch30')" id="li-tab-launch30" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
             30-Day Launch Plan
+          </button>
+          <button onclick="switchLinkedInTab('checklist')" id="li-tab-checklist" class="tab-btn px-4 py-3 text-xs font-semibold text-[#8888A8] hover:text-white whitespace-nowrap">
+            Profile Checklist
           </button>
         </div>
 
@@ -1127,28 +1654,7 @@ html_content = f"""<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Tab 3: Profile Checklist -->
-        <div id="li-content-checklist" class="hidden p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-            <span class="text-xs font-bold text-white font-heading">Complete Profile Hygiene Checklist</span>
-            <div class="flex items-center gap-3">
-              <span id="profile-checklist-progress-badge" class="text-xs font-mono text-[#00D4AA]">0/23 completed (0%)</span>
-              <div class="w-24 bg-[#0A0A0F] h-2 rounded-full overflow-hidden border border-[#2A2A3A]">
-                <div id="profile-checklist-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all" style="width: 0%"></div>
-              </div>
-            </div>
-          </div>
-          <div id="profile-checklist-container" class="space-y-4">
-            <!-- Rendered via JS -->
-          </div>
-          <div class="pt-2 flex justify-end">
-            <button onclick="resetProfileChecklist()" class="text-xs text-[#8888A8] hover:text-white flex items-center gap-1">
-              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Reset Profile Checklist
-            </button>
-          </div>
-        </div>
-
-        <!-- Tab 4: 3-Slot Featured Strategy -->
+        <!-- Tab 3: 3-Slot Featured Strategy -->
         <div id="li-content-featured" class="hidden p-6 space-y-6">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="p-5 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
@@ -1169,7 +1675,7 @@ html_content = f"""<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Tab 5: 3x/Week Scheduler -->
+        <!-- Tab 4: 3x/Week Scheduler -->
         <div id="li-content-content" class="hidden p-6 space-y-6">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-white">Choose Content Archetype:</span>
@@ -1188,19 +1694,22 @@ html_content = f"""<!DOCTYPE html>
           </div>
         </div>
 
-        <!-- Tab 6: 30-Day Launch Plan -->
+        <!-- Tab 5: 30-Day Launch Plan -->
         <div id="li-content-launch30" class="hidden p-6 space-y-4">
           <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
-            <span class="text-xs font-bold text-white">Interactive 30-Day Authority Launch Plan</span>
+            <div>
+              <h3 class="text-xs font-bold text-white">Interactive 30-Day Authority Launch Plan</h3>
+              <p class="text-[11px] text-[#8888A8]">Day-by-day checklist saved automatically in your browser.</p>
+            </div>
             <div class="flex items-center gap-3">
-              <span id="launch-30-progress-badge" class="text-xs font-mono text-[#00D4AA]">0/10 completed (0%)</span>
+              <span id="launch-30-progress-badge" class="text-xs font-mono text-[#00D4AA]">0/10 days complete (0%)</span>
               <div class="w-24 bg-[#0A0A0F] h-2 rounded-full overflow-hidden border border-[#2A2A3A]">
                 <div id="launch-30-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all" style="width: 0%"></div>
               </div>
             </div>
           </div>
           <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs">
+            <table class="w-full text-left text-xs min-w-[500px]">
               <tbody id="launch-30-tbody" class="divide-y divide-[#2A2A3A]">
                 <!-- Rendered via JS -->
               </tbody>
@@ -1213,23 +1722,47 @@ html_content = f"""<!DOCTYPE html>
           </div>
         </div>
 
+        <!-- Tab 6: Profile Checklist -->
+        <div id="li-content-checklist" class="hidden p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-3">
+            <div>
+              <h3 class="text-xs font-bold text-white font-heading">Complete Profile Hygiene Checklist</h3>
+              <p class="text-[11px] text-[#8888A8]">23 checkpoints across 6 core profile areas.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="profile-checklist-progress-badge" class="text-xs font-mono text-[#00D4AA]">0/23 complete (0%)</span>
+              <div class="w-24 bg-[#0A0A0F] h-2 rounded-full overflow-hidden border border-[#2A2A3A]">
+                <div id="profile-checklist-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all" style="width: 0%"></div>
+              </div>
+            </div>
+          </div>
+          <div id="profile-checklist-container" class="space-y-4">
+            <!-- Rendered via JS -->
+          </div>
+          <div class="pt-2 flex justify-end">
+            <button onclick="resetProfileChecklist()" class="text-xs text-[#8888A8] hover:text-white flex items-center gap-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Reset Profile Checklist
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 9: OUTREACH CRM (MODULE 4) -->
+    <!-- STEP 9: LAUNCH OUTREACH -->
     <!-- ========================================== -->
-    <section id="outreach-section" class="space-y-6 scroll-mt-32">
+    <section id="outreach-section" class="space-y-6 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="space-y-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#6C63FF]">
-            <i data-lucide="send" class="w-3.5 h-3.5"></i> MODULE 4: OUTBOUND PIPELINE
+            <span class="font-bold text-[#6C63FF]">STEP 09</span> &middot; OUTBOUND PIPELINE
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-            Outreach CRM & Lead Generation Pipeline
+            Launch Outreach: Outbound CRM & Lead Pipeline
           </h2>
           <p class="text-sm text-[#8888A8] text-prose">
-            Track your outbound campaign, generate high-converting 3-phase DMs, and manage your pipeline across 5 deal stages.
+            Contact 20–25 founders daily using value-first DMs. Track every conversation.
           </p>
         </div>
 
@@ -1350,662 +1883,21 @@ html_content = f"""<!DOCTYPE html>
 
         </div>
       </div>
-
     </section>
 
     <!-- ========================================== -->
-    <!-- SECTION 10: JOB SEARCH ENGINE (NEW) -->
+    <!-- STEP 10: RESOURCES & DATA CONTROLS -->
     <!-- ========================================== -->
-    <section id="job-search-section" class="space-y-8 scroll-mt-32">
+    <section id="resources-section" class="space-y-8 scroll-mt-36 pt-4 border-t border-[#2A2A3A]">
       <div class="space-y-2">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-          <i data-lucide="search" class="w-3.5 h-3.5"></i> 2026 REMOTE DISCOVERY & CLOSING
+          <span class="font-bold text-[#6C63FF]">STEP 10</span> &middot; COMPANION VAULT
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          The US Remote AI Job Search Engine
+          Resources & Implementation Hub
         </h2>
         <p class="text-sm text-[#8888A8] text-prose">
-          High-demand career paths, boolean search queries, vetted job board directories, the 5-5-5 daily outbound system, and the AI interview playbook.
-        </p>
-      </div>
-
-      <!-- Sub-section A: The 6 High-Demand AI & Remote Career Paths -->
-      <div class="space-y-4">
-        <div class="flex items-center justify-between border-b border-[#2A2A3A] pb-2">
-          <h3 class="text-base font-bold text-white font-heading">A. 6 High-Demand AI & Remote Career Paths</h3>
-          <span class="text-xs font-mono text-[#00D4AA]">$60K–$150K Contractor Market</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 01</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$80K–$130K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">AI Engineer</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Integrates models into production software. Builds APIs, orchestrates model calling, implements latency caching, and monitors output fidelity.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: Python, FastAPI, PyTorch, OpenAI API, Docker</div>
-          </div>
-
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 02</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$90K–$140K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">LLM & RAG Engineer</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Builds retrieval-augmented generation pipelines, vector database indexing, hybrid search (BM25 + Dense), semantic routing, and evaluation suites.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: LangChain, LlamaIndex, Qdrant, Chroma, Ragas</div>
-          </div>
-
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 03</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$85K–$135K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">MLOps Engineer</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Maintains training and inference infrastructure, CI/CD pipelines for models, data drift monitoring (KL divergence), and containerized microservices.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: MLflow, Evidently, Kubernetes, Prometheus, AWS</div>
-          </div>
-
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 04</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$80K–$125K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">Full-Stack AI Engineer</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Bridges frontend UI and backend AI pipelines. Builds reactive dashboards, chat interfaces, streaming responses, and backend API endpoints.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: Next.js, React, Tailwind, FastAPI, Python</div>
-          </div>
-
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 05</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$75K–$120K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">AI Product Developer</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Focuses on end-to-end product features powered by autonomous agents, tool use, and structured outputs for internal workflows.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: CrewAI, LangGraph, Python, Streamlit, Supabase</div>
-          </div>
-
-          <div class="card-surface p-5 space-y-2 bg-[#13131A]">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-mono text-[#6C63FF] font-semibold">ROLE 06</span>
-              <span class="text-xs font-mono font-bold text-[#00D4AA]">$95K–$150K/yr</span>
-            </div>
-            <h4 class="text-sm font-bold text-white font-heading">Remote AI Solutions Architect</h4>
-            <p class="text-xs text-[#8888A8] leading-relaxed">
-              Designs cloud architecture, multi-tenant security boundaries, data governance, and cost optimization strategies for enterprise AI adoption.
-            </p>
-            <div class="text-[11px] text-slate-300 font-mono pt-1">Stack: AWS Cloud, GCP, pgvector, Redis, System Design</div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Sub-section B & C: Search Strings & Job Titles -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        <!-- B: Exact Job Titles (5 cols) -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A] lg:col-span-5">
-          <h3 class="text-base font-bold text-white font-heading">B. Exact Job Titles to Target</h3>
-          <p class="text-xs text-[#8888A8]">Search across these variants to uncover uncrowded listings:</p>
-          
-          <div class="space-y-2 text-xs">
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex justify-between">
-              <span class="text-white font-medium">Entry / Associate:</span>
-              <span class="text-[#8888A8]">Junior AI Dev, Associate ML Engineer</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex justify-between">
-              <span class="text-white font-medium">Core / Mid-Level:</span>
-              <span class="text-[#8888A8]">AI Engineer, LLM Engineer, Applied ML</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex justify-between">
-              <span class="text-white font-medium">Contractor / Remote:</span>
-              <span class="text-[#00D4AA]">US Remote Contractor, AI Specialist</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex justify-between">
-              <span class="text-white font-medium">Infrastructure:</span>
-              <span class="text-[#8888A8]">ML Platform Engineer, MLOps Infra</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- C: 10 Boolean Search Strings (7 cols) -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A] lg:col-span-7">
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-bold text-white font-heading">C. 10 Boolean Search Strings</h3>
-            <span class="text-xs text-[#8888A8]">1-Click Copy</span>
-          </div>
-          
-          <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-2 text-xs">
-              <span class="font-mono text-slate-300 truncate">"AI Engineer" AND ("remote" OR "anywhere") AND "FastAPI"</span>
-              <button onclick="copySearchString('\"AI Engineer\" AND (\"remote\" OR \"anywhere\") AND \"FastAPI\"')" class="px-2 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[11px] shrink-0 font-medium">Copy</button>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-2 text-xs">
-              <span class="font-mono text-slate-300 truncate">"LLM" AND ("RAG" OR "LangChain") AND "contract" AND "worldwide"</span>
-              <button onclick="copySearchString('\"LLM\" AND (\"RAG\" OR \"LangChain\") AND \"contract\" AND \"worldwide\"')" class="px-2 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[11px] shrink-0 font-medium">Copy</button>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-2 text-xs">
-              <span class="font-mono text-slate-300 truncate">"Machine Learning Engineer" AND ("Seed" OR "Series A") AND "overlap"</span>
-              <button onclick="copySearchString('\"Machine Learning Engineer\" AND (\"Seed\" OR \"Series A\") AND \"overlap\"')" class="px-2 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[11px] shrink-0 font-medium">Copy</button>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-2 text-xs">
-              <span class="font-mono text-slate-300 truncate">"Python" AND "AI" AND ("W-8BEN" OR "contractor" OR "B2B")</span>
-              <button onclick="copySearchString('\"Python\" AND \"AI\" AND (\"W-8BEN\" OR \"contractor\" OR \"B2B\")')" class="px-2 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[11px] shrink-0 font-medium">Copy</button>
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] flex items-center justify-between gap-2 text-xs">
-              <span class="font-mono text-slate-300 truncate">"Applied AI" AND ("Vector DB" OR "Qdrant" OR "pgvector")</span>
-              <button onclick="copySearchString('\"Applied AI\" AND (\"Vector DB\" OR \"Qdrant\" OR \"pgvector\")')" class="px-2 py-1 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[11px] shrink-0 font-medium">Copy</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sub-section D: Platforms Directory (4 Tabs) -->
-      <div class="card-surface bg-[#13131A] overflow-hidden">
-        <div class="p-4 border-b border-[#2A2A3A] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-white font-heading">D. Vetted Remote Job Board Directory</h3>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="switchPlatformTab('startups')" id="platform-tab-startups" class="tab-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#6C63FF] text-white">AI-Specific</button>
-            <button onclick="switchPlatformTab('remote')" id="platform-tab-remote" class="tab-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">Remote-First</button>
-            <button onclick="switchPlatformTab('freelance')" id="platform-tab-freelance" class="tab-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">Reverse Networks</button>
-            <button onclick="switchPlatformTab('india')" id="platform-tab-india" class="tab-btn px-3 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">Direct Outreach</button>
-          </div>
-        </div>
-
-        <div class="p-6">
-          <div id="platform-content-startups" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">AI Jobs Global</div>
-              <p class="text-[11px] text-[#8888A8]">Dedicated directory for machine learning, prompt engineering, and LLM roles.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Hugging Face Jobs</div>
-              <p class="text-[11px] text-[#8888A8]">Top AI research labs and open-source startups hiring globally.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Wellfound (AngelList) AI</div>
-              <p class="text-[11px] text-[#8888A8]">Filter by Seed/Series A startups with verified remote contractor budgets.</p>
-            </div>
-          </div>
-
-          <div id="platform-content-remote" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">We Work Remotely</div>
-              <p class="text-[11px] text-[#8888A8]">The original remote job board with high-paying international contractor roles.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">RemoteOK</div>
-              <p class="text-[11px] text-[#8888A8]">Live salary transparency and worldwide tech openings.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Himalayas</div>
-              <p class="text-[11px] text-[#8888A8]">In-depth company profiles and strict remote-only filtering.</p>
-            </div>
-          </div>
-
-          <div id="platform-content-freelance" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Toptal</div>
-              <p class="text-[11px] text-[#8888A8]">Top 3% freelance network. High hourly rates ($50–$120/hr).</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Turing / Braintrust</div>
-              <p class="text-[11px] text-[#8888A8]">Vetted engineering matching for US tech companies.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">A.Team</div>
-              <p class="text-[11px] text-[#8888A8]">High-end cloud teams hired by venture-backed startups for key product sprints.</p>
-            </div>
-          </div>
-
-          <div id="platform-content-india" class="hidden grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Y Combinator Startup Directory</div>
-              <p class="text-[11px] text-[#8888A8]">Filter recent YC batches (W24, S24, W25) and pitch founders directly.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">Product Hunt Launches</div>
-              <p class="text-[11px] text-[#8888A8]">Target newly launched AI tools experiencing sudden server and cost scaling issues.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white text-xs">GitHub Trending Repos</div>
-              <p class="text-[11px] text-[#8888A8]">Submit high-value bug fixes and PRs to open-source AI repos that have commercial backing.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sub-section E & F: Smart Strategies & 5-5-5 Daily System -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- E: 7 Smart Strategies -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A]">
-          <h3 class="text-base font-bold text-white font-heading">E. 7 Smart Application Strategies</h3>
-          <div class="space-y-2 text-xs text-slate-300">
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">1. The 2-Minute Video Audit:</span> Record a Loom tearing down an architectural bottleneck before the first interview.
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">2. Open Source PR Proof:</span> Fix a documented issue on the company's public repo and attach the PR link.
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">3. Direct Founder DM:</span> Bypass HR portals completely and contact technical founders with a trade-off question.
-            </div>
-            <div class="p-2.5 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">4. Scoped Trial Close:</span> Never ask for full-time on day 1. Close on a 1-week paid trial milestone.
-            </div>
-          </div>
-        </div>
-
-        <!-- F: The 5-5-5 Daily Application System -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A]">
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-bold text-white font-heading">F. The 5-5-5 Daily Outbound Habit</h3>
-            <span class="text-xs font-mono text-[#00D4AA]">Daily Routine</span>
-          </div>
-          <div class="space-y-3 text-xs">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white flex justify-between"><span>5 Quick Applications</span> <span class="text-[#00D4AA]">Portals & Boards</span></div>
-              <p class="text-[11px] text-[#8888A8]">Submit 5 high-fit applications on Wellfound, RemoteOK, and Himalayas.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white flex justify-between"><span>5 Tailored Founder DMs</span> <span class="text-[#6C63FF]">LinkedIn / X</span></div>
-              <p class="text-[11px] text-[#8888A8]">Send 5 personalized curiosity messages to technical founders with custom project links.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white flex justify-between"><span>5 High-Value Engagements</span> <span class="text-amber-400">Comments & Insights</span></div>
-              <p class="text-[11px] text-[#8888A8]">Leave 5 thoughtful technical comments on target decision-makers' posts.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sub-section G & H: Cold Outreach Templates & Remote Work Reality -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        
-        <!-- G: 3 Cold Outreach Templates -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A]">
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-bold text-white font-heading">G. 3 Cold Outreach Direct Pitch Templates</h3>
-            <span class="text-xs text-[#8888A8]">Copy-Ready</span>
-          </div>
-          <div class="space-y-3">
-            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-white">Template 1: Founder / CTO Direct Pitch</span>
-                <button onclick="copyTemplateMessage('tpl-1-text')" class="px-2 py-0.5 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[10px]">Copy</button>
-              </div>
-              <p id="tpl-1-text" class="text-xs text-slate-300 font-sans leading-relaxed italic">
-                "Hey [Name], noticed [Company] is scaling its RAG document processing. I recently built a tiered classifier that cut inference costs 70% while keeping latency under 30ms. Open-sourced the architecture and benchmarks here: [Link]. Would love to share how we handled tenant cache eviction if you're exploring cost optimizations."
-              </p>
-            </div>
-
-            <div class="p-3 rounded-xl bg-[#1C1C27] border border-[#2A2A3A] space-y-2">
-              <div class="flex justify-between items-center">
-                <span class="text-xs font-bold text-white">Template 2: Engineering Manager Trade-off</span>
-                <button onclick="copyTemplateMessage('tpl-2-text')" class="px-2 py-0.5 rounded bg-[#6C63FF] hover:bg-[#584fe6] text-white text-[10px]">Copy</button>
-              </div>
-              <p id="tpl-2-text" class="text-xs text-slate-300 font-sans leading-relaxed italic">
-                "Hey [Name], loved your recent post on handling drift in production models. Built an automated retraining pipeline using KL divergence alerts that triggers canaries on GitHub Actions: [Repo Link]. Curious how your team currently benchmarks embeddings drift across user clusters?"
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- H: Remote Reality Check & Infrastructure -->
-        <div class="card-surface p-6 space-y-4 bg-[#13131A]">
-          <h3 class="text-base font-bold text-white font-heading">H. Remote Contractor Infrastructure & Legal</h3>
-          <div class="space-y-3 text-xs text-slate-300">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white">W-8BEN Tax Form (0 US Tax Withholding)</div>
-              <p class="text-[11px] text-[#8888A8]">As a non-US citizen working outside the US, you submit Form W-8BEN to certify you owe 0% US withholding tax. You pay taxes locally in your home country.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white">Payment Rails (Wise / Deel / Stripe)</div>
-              <p class="text-[11px] text-[#8888A8]">Setup a USD receiving bank account on Wise or Deel for friction-free ACH and wire payouts directly to your local bank.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-              <div class="font-bold text-white">Contractor Terms vs Full-Time</div>
-              <p class="text-[11px] text-[#8888A8]">Contractors earn 30–50% higher hourly rates ($40–$80/hr) with full flexibility and zero US visa sponsorship requirements.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Sub-section I: The AI Interview Playbook (5 Tabs) -->
-      <div class="card-surface bg-[#13131A] overflow-hidden">
-        <div class="p-4 border-b border-[#2A2A3A] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <div>
-            <h3 class="text-base font-bold text-white font-heading">I. The AI Interview Playbook & 8 Project Questions</h3>
-            <p class="text-xs text-[#8888A8]">Master the technical rounds, system design, and behavioral questions US founders ask.</p>
-          </div>
-          <div class="flex flex-wrap gap-1">
-            <button onclick="switchInterviewTab('python')" id="interview-tab-python" class="tab-btn px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#6C63FF] text-white">1. Coding</button>
-            <button onclick="switchInterviewTab('sql')" id="interview-tab-sql" class="tab-btn px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">2. SQL</button>
-            <button onclick="switchInterviewTab('ml')" id="interview-tab-ml" class="tab-btn px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">3. ML / Deep</button>
-            <button onclick="switchInterviewTab('llm')" id="interview-tab-llm" class="tab-btn px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">4. LLM & RAG</button>
-            <button onclick="switchInterviewTab('agents')" id="interview-tab-agents" class="tab-btn px-2.5 py-1 text-xs font-semibold rounded-lg bg-[#1C1C27] text-[#8888A8] hover:text-white">5. 8 Deep Project Qs</button>
-          </div>
-        </div>
-
-        <div class="p-6">
-          <div id="interview-content-python" class="space-y-3 text-xs text-slate-300">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Data Structures & Optimization:</span> Focus on HashMaps, sliding window algorithms, binary search, and time/space complexity tradeoffs (Big-O).
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Async Python & Concurrency:</span> Be ready to write asyncio task pools, generators, and multi-threaded data consumers.
-            </div>
-          </div>
-
-          <div id="interview-content-sql" class="hidden space-y-3 text-xs text-slate-300">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Window Functions & Partitioning:</span> ROW_NUMBER, RANK, DENSE_RANK, and LAG/LEAD across tenant partitions.
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Indexing & Query Plans:</span> EXPLAIN ANALYZE, B-tree vs GIN indexes, and optimizing large vector joins.
-            </div>
-          </div>
-
-          <div id="interview-content-ml" class="hidden space-y-3 text-xs text-slate-300">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Loss Functions & Optimizers:</span> Cross-entropy vs MSE, AdamW vs SGD, learning rate scheduling, and gradient clipping.
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Attention & Transformers:</span> Self-attention math (Q, K, V matrices), KV caching in LLMs, and LoRA fine-tuning mechanics.
-            </div>
-          </div>
-
-          <div id="interview-content-llm" class="hidden space-y-3 text-xs text-slate-300">
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">RAG Architecture at Scale:</span> Chunking strategies, semantic caching, hybrid BM25 + Vector search, and re-ranking bottlenecks.
-            </div>
-            <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A]">
-              <span class="font-bold text-white">Latency & Cost Profiling:</span> Designing systems with p95 &lt; 50ms and $0.0001 per request inference constraints.
-            </div>
-          </div>
-
-          <div id="interview-content-agents" class="hidden space-y-3 text-xs text-slate-300">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-bold text-white">1. Why this specific tech stack?</div>
-                <div class="text-[11px] text-[#8888A8]">Explain why you chose FastAPI over Flask and Qdrant over Pinecone.</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-bold text-white">2. What failed in your first prototype?</div>
-                <div class="text-[11px] text-[#8888A8]">Share an authentic debugging post-mortem and how you fixed it.</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-bold text-white">3. How did you benchmark latency?</div>
-                <div class="text-[11px] text-[#8888A8]">Quote p50, p95, and p99 percentiles under Locust load testing.</div>
-              </div>
-              <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-                <div class="font-bold text-white">4. What is the unit cost per inference?</div>
-                <div class="text-[11px] text-[#8888A8]">Prove the economic ROI of your hybrid architecture.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 11: FREE COURSES (NEW) -->
-    <!-- ========================================== -->
-    <section id="courses-section" class="space-y-6 scroll-mt-32">
-      <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#6C63FF]">
-          <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i> WORLD-CLASS BIG TECH CURRICULUM
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          12 Big Tech Free AI Courses
-        </h2>
-        <p class="text-sm text-[#8888A8] text-prose">
-          Curated curriculum from Google, DeepLearning.AI, Microsoft, Stanford, MIT, Fast.ai, and Hugging Face with 100% free audit access.
-        </p>
-      </div>
-
-      <!-- 12 Free Courses Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        
-        <!-- Course 1 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-[#00D4AA]">DeepLearning.AI</span>
-              <span class="px-1.5 py-0.5 rounded bg-[#00D4AA]/10 text-[#00D4AA] text-[10px] font-mono">100% Free</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">AI for Everyone & LangChain Series</h3>
-            <p class="text-xs text-[#8888A8]">Taught by Andrew Ng. Covers generative AI fundamentals, RAG, and agentic workflows.</p>
-          </div>
-          <a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 2 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-sky-400">Google Cloud</span>
-              <span class="px-1.5 py-0.5 rounded bg-sky-500/10 text-sky-400 text-[10px] font-mono">100% Free</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">Generative AI Fundamentals</h3>
-            <p class="text-xs text-[#8888A8]">Official Google learning path covering LLMs, responsible AI, and Vertex AI architecture.</p>
-          </div>
-          <a href="https://www.cloudskillsboost.google/course_templates/536" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 3 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-blue-400">Microsoft Learn</span>
-              <span class="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 text-[10px] font-mono">12 Weeks</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">AI for Beginners Curriculum</h3>
-            <p class="text-xs text-[#8888A8]">Comprehensive 24-lesson curriculum from Microsoft engineers on symbolic AI to neural networks.</p>
-          </div>
-          <a href="https://microsoft.github.io/AI-For-Beginners/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 4 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-amber-400">Fast.ai</span>
-              <span class="px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 text-[10px] font-mono">Top Pick</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">Practical Deep Learning for Coders</h3>
-            <p class="text-xs text-[#8888A8]">Jeremy Howard's world-famous top-down approach to training modern neural networks with PyTorch.</p>
-          </div>
-          <a href="https://course.fast.ai/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 5 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-rose-400">Stanford Online</span>
-              <span class="px-1.5 py-0.5 rounded bg-rose-500/10 text-rose-400 text-[10px] font-mono">Academic</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">CS229: Machine Learning</h3>
-            <p class="text-xs text-[#8888A8]">The gold standard university course for statistical learning theory and ML mathematical foundations.</p>
-          </div>
-          <a href="https://cs229.stanford.edu/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 6 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-purple-400">MIT OpenCourseWare</span>
-              <span class="px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-400 text-[10px] font-mono">6.S191</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">Introduction to Deep Learning</h3>
-            <p class="text-xs text-[#8888A8]">MIT's flagship course on foundation models, generative modeling, and reinforcement learning.</p>
-          </div>
-          <a href="http://introtodeeplearning.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 7 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-yellow-400">Hugging Face</span>
-              <span class="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-400 text-[10px] font-mono">Hands-on</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">NLP Course & Transformers</h3>
-            <p class="text-xs text-[#8888A8]">Master the Hugging Face ecosystem, fine-tuning Transformers, tokenizers, and datasets.</p>
-          </div>
-          <a href="https://huggingface.co/learn/nlp-course/chapter1/1" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 8 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-orange-400">AWS Skill Builder</span>
-              <span class="px-1.5 py-0.5 rounded bg-orange-500/10 text-orange-400 text-[10px] font-mono">Cloud ML</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">AWS Educate ML Foundations</h3>
-            <p class="text-xs text-[#8888A8]">Learn AWS SageMaker, cloud inference pipelines, and scalable model hosting.</p>
-          </div>
-          <a href="https://aws.amazon.com/training/digital/machine-learning-foundations/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 9 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-emerald-400">OpenAI</span>
-              <span class="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-mono">Official</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">OpenAI Cookbook & API Guides</h3>
-            <p class="text-xs text-[#8888A8]">Production code patterns for function calling, structured JSON outputs, embeddings, and fine-tuning.</p>
-          </div>
-          <a href="https://cookbook.openai.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 10 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-indigo-400">Full Stack Deep Learning</span>
-              <span class="px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 text-[10px] font-mono">Production</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">LLM Bootcamp & Production AI</h3>
-            <p class="text-xs text-[#8888A8]">Architecting real-world LLM applications with evaluation frameworks and deployment best practices.</p>
-          </div>
-          <a href="https://fullstackdeeplearning.com/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 11 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-teal-400">Weights & Biases</span>
-              <span class="px-1.5 py-0.5 rounded bg-teal-500/10 text-teal-400 text-[10px] font-mono">MLOps</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">ML Practitioner Courses</h3>
-            <p class="text-xs text-[#8888A8]">Hands-on experiment tracking, model evaluation, and LLM orchestration with W&B.</p>
-          </div>
-          <a href="https://www.wandb.courses/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-        <!-- Course 12 -->
-        <div class="card-surface p-5 space-y-3 bg-[#13131A] flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-mono text-red-400">Harvard CS50</span>
-              <span class="px-1.5 py-0.5 rounded bg-red-500/10 text-red-400 text-[10px] font-mono">Fundamentals</span>
-            </div>
-            <h3 class="text-sm font-bold text-white font-heading">CS50’s Intro to AI with Python</h3>
-            <p class="text-xs text-[#8888A8]">Covers search algorithms, minimax, machine learning, neural networks, and NLP from scratch.</p>
-          </div>
-          <a href="https://cs50.harvard.edu/ai/" target="_blank" rel="noopener noreferrer" class="text-xs text-[#6C63FF] hover:underline flex items-center gap-1">
-            Official Course Link <i data-lucide="external-link" class="w-3 h-3"></i>
-          </a>
-        </div>
-
-      </div>
-
-      <!-- Recommended Learning Order Timeline -->
-      <div class="card-surface p-6 space-y-4 bg-[#13131A]">
-        <h3 class="text-sm font-bold text-white font-heading">Recommended Learning Progression Order</h3>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-          <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-            <div class="font-bold text-[#6C63FF]">Stage 1: Core Fundamentals</div>
-            <p class="text-[11px] text-[#8888A8]">Harvard CS50 AI + DeepLearning.AI for basic mental models.</p>
-          </div>
-          <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-            <div class="font-bold text-[#00D4AA]">Stage 2: Applied Deep Learning</div>
-            <p class="text-[11px] text-[#8888A8]">Fast.ai + Stanford CS229 for PyTorch mechanics and training.</p>
-          </div>
-          <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-            <div class="font-bold text-amber-400">Stage 3: LLMs & Transformers</div>
-            <p class="text-[11px] text-[#8888A8]">Hugging Face NLP + OpenAI Cookbook for RAG & Agents.</p>
-          </div>
-          <div class="p-3 rounded-lg bg-[#1C1C27] border border-[#2A2A3A] space-y-1">
-            <div class="font-bold text-sky-400">Stage 4: Production MLOps</div>
-            <p class="text-[11px] text-[#8888A8]">Full Stack Deep Learning + Weights & Biases for scale.</p>
-          </div>
-        </div>
-        <p class="text-[11px] text-[#8888A8] italic">Note: All courses listed above are 100% free or audit-free without paywalls.</p>
-      </div>
-
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SECTION 12: RESOURCES (EXISTING) -->
-    <!-- ========================================== -->
-    <section id="resources-section" class="space-y-6 scroll-mt-32">
-      <div class="space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-          <i data-lucide="archive" class="w-3.5 h-3.5"></i> COMPANION RESOURCE VAULT
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-          Companion Resource Vault
-        </h2>
-        <p class="text-sm text-[#8888A8] text-prose">
-          Essential cheat sheets, legal templates, video pitch scripts, and compensation benchmarks.
+          Access all companion guides, spreadsheets, and video walkthroughs.
         </p>
       </div>
 
@@ -2057,59 +1949,61 @@ html_content = f"""<!DOCTYPE html>
         </div>
 
       </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 13: FINAL CHECKLIST (NEW) -->
-    <!-- ========================================== -->
-    <section id="final-checklist-section" class="space-y-6 scroll-mt-32">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div class="space-y-2">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1C27] border border-[#2A2A3A] text-xs font-mono text-[#00D4AA]">
-            <i data-lucide="list-checks" class="w-3.5 h-3.5"></i> FINAL PRE-LAUNCH VERIFICATION
+      <!-- Final Readiness Checklist -->
+      <div id="final-checklist-section" class="card-surface p-6 space-y-4 bg-[#13131A]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#2A2A3A] pb-3">
+          <div>
+            <h3 class="text-base font-bold text-white font-heading flex items-center gap-2">
+              <i data-lucide="list-checks" class="w-4 h-4 text-[#00D4AA]"></i>
+              Final Pre-Launch Verification Checklist
+            </h3>
+            <p class="text-xs text-[#8888A8]">Verify your profile, portfolio, outreach infrastructure, and interview readiness before sending your first application.</p>
           </div>
-          <h2 class="text-2xl sm:text-3xl font-bold text-white font-heading">
-            Final Readiness Checklist
-          </h2>
-          <p class="text-sm text-[#8888A8] text-prose">
-            Verify your profile, portfolio, outreach infrastructure, and interview readiness before sending your first application.
-          </p>
-        </div>
-        <div class="text-right">
-          <div id="final-checklist-progress-badge" class="text-sm font-bold font-mono text-[#00D4AA]">0 / 12 complete (0%)</div>
-          <div class="w-32 bg-[#13131A] h-2 rounded-full overflow-hidden border border-[#2A2A3A] mt-1 ml-auto">
-            <div id="final-checklist-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+          <div class="text-right">
+            <div id="final-checklist-progress-badge" class="text-xs font-bold font-mono text-[#00D4AA]">0 / 12 complete (0%)</div>
+            <div class="w-28 bg-[#0A0A0F] h-2 rounded-full overflow-hidden border border-[#2A2A3A] mt-1 ml-auto">
+              <div id="final-checklist-progress-bar" class="bg-[#00D4AA] h-full rounded-full transition-all" style="width: 0%"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 12-Item Interactive Checklist Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="final-checklist-items-container">
-        <!-- Rendered via JS -->
-      </div>
-
-      <div class="flex items-center justify-between pt-2">
-        <button onclick="resetFinalChecklist()" class="text-xs text-[#8888A8] hover:text-white flex items-center gap-1 transition">
-          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Final Checklist
-        </button>
-      </div>
-
-      <!-- Final Career Rule Callout -->
-      <div class="p-6 rounded-xl bg-[#13131A] border border-[#6C63FF]/50 space-y-3">
-        <div class="flex items-center gap-2 text-[#6C63FF] font-bold text-sm font-heading">
-          <i data-lucide="award" class="w-5 h-5"></i>
-          The Golden Rule of Remote US Engineering
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="final-checklist-items-container">
+          <!-- Rendered via JS -->
         </div>
-        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
-          "US companies don't hire remote international engineers to save money on juniors — they hire them to acquire self-directed, autonomous senior talent that communicates flawlessly and solves high-leverage problems without handholding."
-        </p>
+
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="resetFinalChecklist()" class="text-xs text-[#8888A8] hover:text-white flex items-center gap-1 transition">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset Final Checklist
+          </button>
+        </div>
+      </div>
+
+      <!-- Data Backup & Controls Section -->
+      <div class="p-6 rounded-xl bg-[#13131A] border border-[#2A2A3A] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <h3 class="text-sm font-bold text-white font-heading">Data Portability & Local Storage Controls</h3>
+          <p class="text-xs text-[#8888A8]">All checklist items, roadmap progress, and CRM leads are stored 100% locally in your browser.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="exportUserDataJSON()" class="px-3.5 py-2 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center gap-1.5 transition">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Data JSON
+          </button>
+          <label class="px-3.5 py-2 rounded-lg bg-[#1C1C27] hover:bg-[#2A2A3A] border border-[#2A2A3A] text-slate-200 text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition">
+            <i data-lucide="upload" class="w-3.5 h-3.5 text-[#00D4AA]"></i> Import Backup
+            <input type="file" accept=".json" onchange="importUserDataJSON(event)" class="hidden">
+          </label>
+          <button onclick="resetAllData()" class="px-3.5 py-2 rounded-lg bg-[#1C1C27] hover:bg-red-500/20 hover:text-red-400 border border-[#2A2A3A] text-[#8888A8] text-xs font-semibold transition flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All
+          </button>
+        </div>
       </div>
 
     </section>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (PART 3) -->
   <footer class="mt-20 border-t border-[#2A2A3A] bg-[#0A0A0F] py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
       
@@ -2122,14 +2016,17 @@ html_content = f"""<!DOCTYPE html>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-[#8888A8]">
-        <a href="#hero-section" class="hover:text-white transition">Start Here</a>
-        <a href="#roadmap-90-section" class="hover:text-white transition">90-Day Roadmap</a>
-        <a href="#filters-section" class="hover:text-white transition">5 Filters</a>
-        <a href="#blueprints-section" class="hover:text-white transition">Blueprints</a>
+        <a href="#hero-section" class="hover:text-white transition">Home</a>
+        <a href="#opportunity-section" class="hover:text-white transition">Opportunity</a>
+        <a href="#reality-check-section" class="hover:text-white transition">Reality Check</a>
+        <a href="#filters-section" class="hover:text-white transition">Diagnose</a>
+        <a href="#learn-skills-section" class="hover:text-white transition">Learn Skills</a>
+        <a href="#roadmap-section" class="hover:text-white transition">Build Proof</a>
+        <a href="#job-search-section" class="hover:text-white transition">Find Jobs</a>
+        <a href="#offer-section" class="hover:text-white transition">Craft Offer</a>
         <a href="#linkedin-section" class="hover:text-white transition">LinkedIn</a>
-        <a href="#job-search-section" class="hover:text-white transition">Job Search Engine</a>
-        <a href="#courses-section" class="hover:text-white transition">Free Courses</a>
-        <button onclick="exportUserDataJSON()" class="text-[#00D4AA] hover:underline">Export Data</button>
+        <a href="#outreach-section" class="hover:text-white transition">Outreach</a>
+        <a href="#resources-section" class="hover:text-white transition">Resources</a>
       </div>
 
       <div class="text-xs text-[#8888A8] text-center md:text-right">
@@ -2139,7 +2036,7 @@ html_content = f"""<!DOCTYPE html>
   </footer>
 
   <!-- ========================================== -->
-  <!-- MODALS (BLUEPRINT, LEADS, PROPOSAL, BACKUP)-->
+  <!-- MODALS (PROPOSAL, ADD LEAD, DATABASE, BACKUP) -->
   <!-- ========================================== -->
 
   <!-- 1. Proposal Generator Modal -->
@@ -2156,7 +2053,7 @@ html_content = f"""<!DOCTYPE html>
           <input type="text" id="prop-pain-point" placeholder="Pain Point" value="high LLM API costs & latency" oninput="generateProposalPreview()" class="p-2.5 rounded-lg bg-[#0A0A0F] border border-[#2A2A3A] text-white focus:border-[#6C63FF] focus:outline-none">
           <input type="text" id="prop-solution" placeholder="Solution" value="hybrid 3-tier routing architecture" oninput="generateProposalPreview()" class="p-2.5 rounded-lg bg-[#0A0A0F] border border-[#2A2A3A] text-white focus:border-[#6C63FF] focus:outline-none">
         </div>
-        <textarea id="proposal-output-text" rows="10" class="w-full p-3 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] text-xs text-slate-200 font-mono leading-relaxed focus:border-[#6C63FF] focus:outline-none"></textarea>
+        <textarea id="proposal-output-text" rows="10" placeholder="Your output will appear here" class="w-full p-3 rounded-xl bg-[#0A0A0F] border border-[#2A2A3A] text-xs text-slate-200 font-mono leading-relaxed focus:border-[#6C63FF] focus:outline-none"></textarea>
         <button onclick="copyProposalOutput()" class="w-full py-2.5 rounded-lg bg-[#6C63FF] hover:bg-[#584fe6] text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
           <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Proposal Letter
         </button>
@@ -2229,7 +2126,7 @@ html_content = f"""<!DOCTYPE html>
       <!-- Leads Table Container -->
       <div class="flex-1 overflow-y-auto p-4">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
+          <table class="w-full text-left text-xs min-w-[650px]">
             <thead>
               <tr class="border-b border-[#2A2A3A] text-[#8888A8]">
                 <th class="py-2.5 px-4">Company & Description</th>
@@ -2240,7 +2137,7 @@ html_content = f"""<!DOCTYPE html>
               </tr>
             </thead>
             <tbody id="preloaded-leads-tbody" class="divide-y divide-[#2A2A3A]">
-              <!-- Rendered dynamically via JS -->
+              <tr><td colspan="5" class="py-8 text-center text-[#8888A8]">Loading leads...</td></tr>
             </tbody>
           </table>
         </div>

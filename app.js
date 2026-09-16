@@ -9,12 +9,13 @@
 const STORAGE_KEYS = {
   ROADMAP: 'us_remote_roadmap_v1',
   ROADMAP_90: 'us_remote_90day_roadmap_v1',
+  SKILLS_ROADMAP: 'skillsRoadmap',
   AUDIT: 'us_remote_audit_v1',
   KANBAN: 'us_remote_kanban_v1',
   DAILY: 'us_remote_daily_v1',
   AUDIO: 'us_remote_audio_v1',
-  LI_CHECKLIST: 'us_remote_li_checklist_v2',
-  LI_LAUNCH30: 'us_remote_li_launch30_v2',
+  LI_CHECKLIST: 'linkedinChecklist',
+  LI_LAUNCH30: 'linkedinLaunchPlan',
   FINAL_CHECKLIST: 'us_remote_final_checklist_v1'
 };
 
@@ -53,6 +54,107 @@ const DEFAULT_ROADMAP = {
     { id: 'p4-6', title: 'Negotiate $60K–$120K Remote Contractor Agreement', desc: 'Finalize scope, weekly rate ($1,200–$2,500/week), milestone deliverables, and execute contract via Deel/contract.', completed: false }
   ]
 };
+
+// Default Step 4 Skills Roadmap Stepper Data (7 Steps)
+const DEFAULT_SKILLS_ROADMAP = [
+  {
+    id: 'sr-1',
+    stepNumber: 'STEP 1',
+    title: 'Python & Developer Fundamentals',
+    learn: [
+      'Python fundamentals and object-oriented programming',
+      'Git, GitHub and terminal basics',
+      'APIs, JSON and error handling',
+      'Basic data structures and problem-solving'
+    ],
+    build: 'Create a Python application that uses an external API, handles errors and has a clean README.',
+    completed: false
+  },
+  {
+    id: 'sr-2',
+    stepNumber: 'STEP 2',
+    title: 'Data, SQL & Basic Mathematics',
+    learn: [
+      'NumPy and pandas',
+      'Data cleaning and visualization',
+      'SQL queries, joins and aggregations',
+      'Basic statistics, probability, vectors and matrices'
+    ],
+    build: 'Analyse a public dataset, answer useful questions using SQL and publish your findings.',
+    completed: false
+  },
+  {
+    id: 'sr-3',
+    stepNumber: 'STEP 3',
+    title: 'Machine Learning Fundamentals',
+    learn: [
+      'Regression, classification and clustering',
+      'Feature engineering and data preprocessing',
+      'Training, validation and test datasets',
+      'Overfitting, underfitting and model evaluation',
+      'Scikit-learn pipelines'
+    ],
+    build: 'Train and deploy one ML model with a clear baseline, suitable metrics and error analysis.',
+    completed: false
+  },
+  {
+    id: 'sr-4',
+    stepNumber: 'STEP 4',
+    title: 'Deep Learning & LLM Fundamentals',
+    learn: [
+      'Neural networks and embeddings',
+      'Transformers and tokenization',
+      'Large Language Models',
+      'Prompting and structured outputs',
+      'Fine-tuning basics and hallucinations'
+    ],
+    build: 'Create a simple application that uses an LLM through an API.',
+    completed: false
+  },
+  {
+    id: 'sr-5',
+    stepNumber: 'STEP 5',
+    title: 'Applied Generative AI',
+    learn: [
+      'Vector databases',
+      'Retrieval-Augmented Generation',
+      'Function calling and external tools',
+      'AI agents and workflows',
+      'Context management and prompt security',
+      'Cost, latency and response quality'
+    ],
+    build: 'Create a document-based assistant that answers questions, cites sources and reports when it is uncertain.',
+    completed: false
+  },
+  {
+    id: 'sr-6',
+    stepNumber: 'STEP 6',
+    title: 'Deployment & MLOps Basics',
+    learn: [
+      'FastAPI or Flask',
+      'Docker',
+      'Cloud deployment',
+      'Environment variables and API security',
+      'Logging, monitoring and testing',
+      'Model and prompt versioning'
+    ],
+    build: 'Deploy one AI project and demonstrate what happens when the model, API or user input fails.',
+    completed: false
+  },
+  {
+    id: 'sr-7',
+    stepNumber: 'STEP 7',
+    title: 'Build a Job-Ready Portfolio',
+    learn: [
+      '1. One traditional machine learning project',
+      '2. One RAG or AI agent application',
+      '3. One project used by a real person or organization'
+    ],
+    build: 'Every project must include: Live demo · GitHub repository · Clear README · Architecture diagram · Setup instructions · Evaluation results · 60-second walkthrough video.',
+    note: 'Three deployed projects with real users are more valuable than ten copied tutorial projects.',
+    completed: false
+  }
+];
 
 // Default 90-Day Roadmap Outputs
 const DEFAULT_90DAY_ROADMAP = {
@@ -437,14 +539,95 @@ Best,
 [Your Name]`
 };
 
+// TAB 5: 30-Day Launch Plan
+const DEFAULT_LAUNCH_30_PLAN = [
+  { id: 'l30-1', day: 'Day 1', title: 'Profile Setup', desc: 'Photo, banner, headline (Formula 1–4), About (5-Block Framework), custom URL, Creator Mode ON', completed: false },
+  { id: 'l30-2', day: 'Day 2', title: 'Featured Section', desc: "Add your best project link (even if it's a learning project with metrics). Placeholder for Slots 2–3.", completed: false },
+  { id: 'l30-3', day: 'Day 3–7', title: 'Daily Outreach Begins', desc: 'Connect with 25 people/day (hiring managers, ML leads, founders). Comment on 10 posts. Join 5 conversations.', completed: false },
+  { id: 'l30-4', day: 'Day 7', title: 'First Post', desc: "Write your first \"confusion post\": what you're learning, what confused you, how you figured it out.", completed: false },
+  { id: 'l30-5', day: 'Day 8–14', title: 'Outreach + Content', desc: 'Continue daily outreach. Post second piece (a mistake you made while learning). Track stats.', completed: false },
+  { id: 'l30-6', day: 'Day 14', title: 'Audit', desc: 'Check connection acceptance rate (target: 40%+). Check post engagement. Refine headline if needed.', completed: false },
+  { id: 'l30-7', day: 'Day 15–21', title: 'Deepen Content', desc: 'Post tradeoff analysis or cost breakdown from your learning. Engage 50+ posts/week.', completed: false },
+  { id: 'l30-8', day: 'Day 21', title: 'Case Study Draft', desc: 'Start documenting your learning journey as a structured case study for Featured Slot 1.', completed: false },
+  { id: 'l30-9', day: 'Day 22–28', title: 'Scale Outreach', desc: 'Personalize messages using Phase 1 template. Start tracking in CRM spreadsheet.', completed: false },
+  { id: 'l30-10', day: 'Day 30', title: 'Full Audit', desc: "Re-run checklist from Section 3. Update Featured section. Refine About section based on what you've learned about your audience.", completed: false }
+];
+
+// TAB 6: Profile Checklist (23 items in 6 categories)
+const DEFAULT_PROFILE_CHECKLIST = [
+  {
+    category: 'PROFILE PHOTO & BANNER',
+    icon: 'camera',
+    items: [
+      { id: 'pc-1', title: 'Profile Photo', desc: 'Professional headshot, clear face, neutral/solid background. No group photos, no filters, no sunglasses. Slight smile. Shoulders visible.', completed: false },
+      { id: 'pc-2', title: 'Banner Image', desc: 'Custom banner showing either: (a) your tech stack / architecture diagram, (b) a headline-reinforcing tagline, or (c) your personal brand colors with your value proposition text overlay.', completed: false },
+      { id: 'pc-3', title: 'Photo Ring', desc: 'Turn OFF "Open to Work" green ring. It signals desperation to hiring managers. Instead, signal availability through your content and outreach.', completed: false }
+    ]
+  },
+  {
+    category: 'CORE PROFILE SECTIONS',
+    icon: 'user-check',
+    items: [
+      { id: 'pc-4', title: 'Headline', desc: 'Use one of the 16 headline formulas from Section 1. Must contain: outcome + audience + proof metric. No buzzwords.', completed: false },
+      { id: 'pc-5', title: 'About Section', desc: 'Follow the 5-Block Framework from Section 2. Must include: contrarian hook, specific proof, method/thinking, stack, CTA. 150–250 words max.', completed: false },
+      { id: 'pc-6', title: 'Location', desc: 'Set to your target job market, not your current city (if different). Recruiters filter by location.', completed: false },
+      { id: 'pc-7', title: 'Industry', desc: "Set to the industry you're targeting, not \"Computer Software\" generically.", completed: false },
+      { id: 'pc-8', title: 'Custom URL', desc: 'Claim linkedin.com/in/yourname. Remove random numbers. This appears in search results and email signatures.', completed: false }
+    ]
+  },
+  {
+    category: 'EXPERIENCE SECTION',
+    icon: 'briefcase',
+    items: [
+      { id: 'pc-9', title: 'Titles', desc: 'Use industry-standard titles even for side projects. "ML Engineer (Independent)" beats "Freelancer." "Founder, [Project Name]" beats "Self-employed."', completed: false },
+      { id: 'pc-10', title: 'Descriptions', desc: 'Every role must answer: What system did you own? What was the scale? What was the business outcome? What decisions did you make and why?', completed: false },
+      { id: 'pc-11', title: 'Metrics', desc: 'Include at least 2 quantifiable results per role: cost saved, latency reduced, requests served, uptime achieved, accuracy improved.', completed: false },
+      { id: 'pc-12', title: 'Side Projects', desc: "List production deployments as experience entries with proper descriptions, not just in a \"Projects\" section. If it serves traffic, it's real work.", completed: false }
+    ]
+  },
+  {
+    category: 'FEATURED SECTION',
+    icon: 'sparkles',
+    items: [
+      { id: 'pc-13', title: 'Slot 1', desc: 'Your best case study or portfolio piece with metrics. Link to deployed system, GitHub repo, or detailed write-up.', completed: false },
+      { id: 'pc-14', title: 'Slot 2', desc: 'Your highest-engagement LinkedIn post (proves you can communicate and that others find your thinking valuable).', completed: false },
+      { id: 'pc-15', title: 'Slot 3', desc: 'An architecture diagram or cost analysis (visual proof of system-level thinking). Could be a blog post or a PDF.', completed: false },
+      { id: 'pc-16', title: 'Ordering', desc: 'Most impressive item first. Hiring managers typically only click the first 1–2 items. Make them count.', completed: false }
+    ]
+  },
+  {
+    category: 'SKILLS, ENDORSEMENTS & RECOMMENDATIONS',
+    icon: 'award',
+    items: [
+      { id: 'pc-17', title: 'Top 3 Skills', desc: 'Pin the 3 skills most relevant to your target role. These appear first and signal your positioning.', completed: false },
+      { id: 'pc-18', title: 'Endorsements', desc: 'Ask 5–10 colleagues/peers to endorse your pinned skills. Quantity matters for search ranking.', completed: false },
+      { id: 'pc-19', title: 'Recommendations', desc: 'Request 2–3 recommendations from people who can speak to your production work, problem-solving, or technical leadership. Provide them talking points so they mention specific outcomes.', completed: false }
+    ]
+  },
+  {
+    category: 'ACTIVITY & CONTENT SETTINGS',
+    icon: 'activity',
+    items: [
+      { id: 'pc-20', title: 'Creator Mode', desc: 'Turn ON. Unlocks Featured section, Follow button, and LinkedIn Live. Shows your content prominently.', completed: false },
+      { id: 'pc-21', title: 'Post Frequency', desc: 'Minimum 2x/week. Content should demonstrate thinking, not just activity.', completed: false },
+      { id: 'pc-22', title: 'Engagement', desc: 'Comment on 10+ posts daily. Add value, not "Great post!". Ask questions, share related experiences, offer contrarian viewpoints.', completed: false },
+      { id: 'pc-23', title: 'Hashtags', desc: 'Follow and use 3–5 niche hashtags your target audience follows. Not #AI or #MachineLearning (too broad). Try #MLOps, #MLEngineering, #AIArchitecture.', completed: false }
+    ]
+  }
+];
+
 // Initial App State
 let appState = {
   roadmap: loadFromStorage(STORAGE_KEYS.ROADMAP, DEFAULT_ROADMAP),
+  skillsRoadmap: loadFromStorage(STORAGE_KEYS.SKILLS_ROADMAP, DEFAULT_SKILLS_ROADMAP),
   audit: loadFromStorage(STORAGE_KEYS.AUDIT, { answers: {}, score: null }),
   kanban: loadFromStorage(STORAGE_KEYS.KANBAN, DEFAULT_KANBAN),
   daily: loadFromStorage(STORAGE_KEYS.DAILY, { count: 0, date: new Date().toISOString().slice(0, 10) }),
   sound: loadFromStorage(STORAGE_KEYS.AUDIO, true)
 };
+
+let launch30PlanState = loadFromStorage(STORAGE_KEYS.LI_LAUNCH30, DEFAULT_LAUNCH_30_PLAN);
+let profileChecklistState = loadFromStorage(STORAGE_KEYS.LI_CHECKLIST, DEFAULT_PROFILE_CHECKLIST);
 
 // Web Audio FX Engine
 const AudioFX = {
@@ -505,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render all components
-  render90DayRoadmap();
+  renderSkillsRoadmap();
   renderAuditQuestions();
   renderRoadmap();
   renderBlueprints();
@@ -518,6 +701,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateRoadmapProgress();
   updateDailyDisplay();
   updateAudioIcon();
+  updateTodaysFocus();
   
   // Set initial textareas
   const aboutTextarea = document.getElementById('about-textarea');
@@ -527,14 +711,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   loadContentPrompt('confusion');
   loadOutreachTemplate(1);
-  updateTodaysFocus();
 
   // Initialize Lucide icons
   if (window.lucide) {
     lucide.createIcons();
   }
 
-  // Scroll spy for nav pill active state
+  // Scroll spy for sticky nav pill active state
   const navPills = document.querySelectorAll('.nav-pill');
   const sections = document.querySelectorAll('section[id]');
   if ('IntersectionObserver' in window && sections.length > 0) {
@@ -542,14 +725,16 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navPills.forEach(pill => {
-            pill.classList.remove('active');
+            pill.classList.remove('active', 'bg-[#6C63FF]', 'text-white');
+            pill.classList.add('bg-[#1C1C27]', 'text-slate-300');
             if (pill.getAttribute('href') === '#' + entry.target.id) {
-              pill.classList.add('active');
+              pill.classList.add('active', 'bg-[#6C63FF]', 'text-white');
+              pill.classList.remove('bg-[#1C1C27]', 'text-slate-300');
             }
           });
         }
       });
-    }, { rootMargin: '-30% 0px -60% 0px' });
+    }, { rootMargin: '-20% 0px -60% 0px' });
     sections.forEach(s => observer.observe(s));
   }
 });
@@ -604,7 +789,7 @@ function showToast(message, type = 'success') {
 }
 
 // ==========================================
-// SECTION 1: ARBITRAGE CALCULATOR
+// STEP 0: ARBITRAGE CALCULATOR
 // ==========================================
 function updateArbitrageCalculator(val) {
   const salary = parseInt(val, 10);
@@ -628,66 +813,39 @@ function updateArbitrageCalculator(val) {
   if (mUsd) mUsd.textContent = `$${monthlyUsd.toLocaleString()} / mo`;
 }
 
-function openArbitrageModal() {
-  AudioFX.playClick();
-  const el = document.getElementById('hero-section');
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
-
 // ==========================================
-// SECTION 2: 90-DAY ROADMAP (NEW)
+// STEP 2: SCENARIO SIMULATOR
 // ==========================================
-let roadmap90State = loadFromStorage(STORAGE_KEYS.ROADMAP_90, DEFAULT_90DAY_ROADMAP);
-
-function render90DayRoadmap() {
-  ['phase1', 'phase2', 'phase3'].forEach((pKey, idx) => {
-    const container = document.getElementById(`roadmap-90-p${idx+1}-outputs`);
-    if (!container) return;
-    const items = roadmap90State[pKey] || [];
-    container.innerHTML = items.map(item => `
-      <label class="flex items-start gap-2.5 p-2 rounded-lg bg-[#13131A] border ${item.completed ? 'border-[#00D4AA]/40 bg-[#13131A]/90' : 'border-[#2A2A3A]'} cursor-pointer hover:border-[#6C63FF]/50 transition text-xs">
-        <input 
-          type="checkbox" 
-          ${item.completed ? 'checked' : ''} 
-          onchange="toggle90DayItem('${pKey}', '${item.id}')"
-          class="mt-0.5 w-3.5 h-3.5 rounded bg-[#0A0A0F] border-[#2A2A3A] text-[#6C63FF] focus:ring-[#6C63FF] cursor-pointer"
-        />
-        <span class="${item.completed ? 'line-through text-[#8888A8]' : 'text-slate-200'}">${item.text}</span>
-      </label>
-    `).join('');
-  });
-  update90DayProgress();
-}
-
-function toggle90DayItem(phaseKey, itemId) {
+function handleScenarioAnswer(scenarioId, option) {
   AudioFX.playClick();
-  const item = roadmap90State[phaseKey]?.find(i => i.id === itemId);
-  if (item) {
-    item.completed = !item.completed;
-    saveToStorage(STORAGE_KEYS.ROADMAP_90, roadmap90State);
-    render90DayRoadmap();
-    if (item.completed) {
-      AudioFX.playSuccess();
-      showToast(`Output completed: ${item.text}`);
-    }
-    updateRoadmapProgress();
+  const feedback = document.getElementById('scenario-feedback-box');
+  if (!feedback) return;
+  feedback.classList.remove('hidden');
+
+  if (option === 'C') {
+    feedback.className = 'p-4 rounded-xl text-xs space-y-1.5 bg-[#13131A] border border-[#00D4AA] text-[#00D4AA]';
+    feedback.innerHTML = `
+      <div class="font-bold flex items-center gap-1.5 font-heading">
+        <i data-lucide="check-circle" class="w-4 h-4 text-[#00D4AA]"></i> High-Agency US Remote Response (A+)
+      </div>
+      <p class="text-slate-200">You validated the business goal, presented exact cost economics, offered a hybrid 3-tier architecture, and prepared a fast prototype. US founders love engineers who protect their budget while shipping at high velocity.</p>
+    `;
+    if (window.confetti) confetti({ particleCount: 35, spread: 60 });
+    AudioFX.playSuccess();
+  } else {
+    feedback.className = 'p-4 rounded-xl text-xs space-y-1.5 bg-[#13131A] border border-rose-800 text-rose-300';
+    feedback.innerHTML = `
+      <div class="font-bold flex items-center gap-1.5 font-heading text-rose-400">
+        <i data-lucide="alert-triangle" class="w-4 h-4"></i> Sub-Optimal Traditional Response
+      </div>
+      <p class="text-slate-300">${option === 'A' ? 'Blind agreement causes severe AWS/API billing spikes and hallucinations. Founders will blame you for the burn.' : 'Outright refusal without a constructive alternative makes you a blocker.'} Read Option C to see the high-agency standard.</p>
+    `;
   }
-}
-
-function update90DayProgress() {
-  let total = 0;
-  let done = 0;
-  Object.values(roadmap90State).forEach(list => {
-    total += list.length;
-    done += list.filter(i => i.completed).length;
-  });
-  const pct = Math.round((done / total) * 100);
-  const badge = document.getElementById('roadmap-90-progress-badge');
-  if (badge) badge.textContent = `${done}/${total} Outputs (${pct}%)`;
+  if (window.lucide) lucide.createIcons({ root: feedback });
 }
 
 // ==========================================
-// SECTION 3: THE 5 FILTERS DIAGNOSTIC AUDIT
+// STEP 3: 5 FILTERS DIAGNOSTIC AUDIT & AV TEST
 // ==========================================
 function renderAuditQuestions() {
   const container = document.getElementById('audit-questions-container');
@@ -768,7 +926,7 @@ function checkAuditCompletion() {
     if (totalScore >= 80) {
       tierTitle = 'High-Leverage US Remote Operator (Top 5%)';
       tierDesc = 'You possess strong autonomous ownership, direct communication, and business judgment. You are ready for live founder outreach.';
-      recsHtml = '<div class="text-[#00D4AA] font-bold mb-1">Recommended Next Step:</div> Jump directly to <strong>Phase 3 (LinkedIn Branding)</strong> and <strong>Phase 4 (Cold Outreach Engine)</strong>. Your non-technical maturity will stand out immediately.';
+      recsHtml = '<div class="text-[#00D4AA] font-bold mb-1">Recommended Next Step:</div> Jump directly to <strong>Step 5 (Build Proof of Work)</strong> and <strong>Step 8 (LinkedIn Magnet)</strong>. Your non-technical maturity will stand out immediately.';
       if (label) {
         label.textContent = 'Top 5% Ready';
         label.className = 'text-xs font-bold text-[#00D4AA]';
@@ -776,7 +934,7 @@ function checkAuditCompletion() {
     } else if (totalScore >= 50) {
       tierTitle = 'Transitioning Builder (Needs Polish)';
       tierDesc = 'You have good engineering fundamentals but still show some traditional deferential traits or lack direct asynchronous communication habits.';
-      recsHtml = '<div class="text-amber-400 font-bold mb-1">Recommended Next Step:</div> Focus on <strong>Module 1 Filters 1, 2, and 3</strong>. Practice writing 5-sentence BLUF updates and calculating cost trade-offs for your projects.';
+      recsHtml = '<div class="text-amber-400 font-bold mb-1">Recommended Next Step:</div> Focus on <strong>Step 3 Filters 1, 2, and 3</strong>. Practice writing 5-sentence BLUF updates and calculating cost trade-offs for your projects.';
       if (label) {
         label.textContent = 'Needs Polish (50-79%)';
         label.className = 'text-xs font-bold text-amber-400';
@@ -784,7 +942,7 @@ function checkAuditCompletion() {
     } else {
       tierTitle = 'Junior Ticket-Taker (High Risk)';
       tierDesc = 'Your responses reflect heavy dependence on management, Leetcode-style thinking, or reluctance to challenge flawed technical ideas.';
-      recsHtml = '<div class="text-rose-400 font-bold mb-1">Critical Action Required:</div> Study <strong>Module 2 (Evaluation Matrix)</strong> and build <strong>Blueprint #1</strong> with documented cost-saving metrics before reaching out to founders.';
+      recsHtml = '<div class="text-rose-400 font-bold mb-1">Critical Action Required:</div> Study <strong>Step 2 (Reality Check)</strong> and build <strong>Blueprint #1</strong> with documented cost-saving metrics before reaching out to founders.';
       if (label) {
         label.textContent = 'Needs Training (<50%)';
         label.className = 'text-xs font-bold text-rose-400';
@@ -865,38 +1023,109 @@ function stopCameraTest() {
 }
 
 // ==========================================
-// SECTION 4: SCENARIO SIMULATOR
+// STEP 4: LEARN THE RIGHT SKILLS (TABS & STEPPER)
 // ==========================================
-function handleScenarioAnswer(scenarioId, option) {
+function switchLearnSkillsTab(tabId) {
   AudioFX.playClick();
-  const feedback = document.getElementById('scenario-feedback-box');
-  if (!feedback) return;
-  feedback.classList.remove('hidden');
+  const tabs = ['roadmap', 'skills', 'courses'];
+  tabs.forEach(t => {
+    const btn = document.getElementById(`skills-tab-${t}`);
+    const content = document.getElementById(`skills-content-${t}`);
+    if (btn && content) {
+      if (t === tabId) {
+        btn.classList.add('bg-[#6C63FF]', 'text-white', 'font-semibold');
+        btn.classList.remove('text-[#8888A8]', 'hover:text-white');
+        content.classList.remove('hidden');
+      } else {
+        btn.classList.remove('bg-[#6C63FF]', 'text-white', 'font-semibold');
+        btn.classList.add('text-[#8888A8]', 'hover:text-white');
+        content.classList.add('hidden');
+      }
+    }
+  });
+}
 
-  if (option === 'C') {
-    feedback.className = 'p-4 rounded-xl text-xs space-y-1.5 bg-[#13131A] border border-[#00D4AA] text-[#00D4AA]';
-    feedback.innerHTML = `
-      <div class="font-bold flex items-center gap-1.5 font-heading">
-        <i data-lucide="check-circle" class="w-4 h-4 text-[#00D4AA]"></i> High-Agency US Remote Response (A+)
+function renderSkillsRoadmap() {
+  const container = document.getElementById('skills-stepper-container');
+  const badge = document.getElementById('skills-roadmap-progress-badge');
+  const bar = document.getElementById('skills-roadmap-progress-bar');
+  if (!container) return;
+
+  const total = appState.skillsRoadmap.length;
+  const done = appState.skillsRoadmap.filter(s => s.completed).length;
+  const pct = Math.round((done / total) * 100);
+
+  if (badge) badge.textContent = `${done}/${total} Steps Complete (${pct}%)`;
+  if (bar) bar.style.width = `${pct}%`;
+
+  container.innerHTML = appState.skillsRoadmap.map((s, idx) => `
+    <div class="p-5 rounded-xl border transition space-y-3 ${
+      s.completed ? 'bg-[#13131A] border-[#00D4AA]/40' : 'bg-[#1C1C27] border-[#2A2A3A] hover:border-[#6C63FF]/50'
+    }">
+      <div class="flex items-start justify-between gap-3">
+        <label class="flex items-start gap-3 cursor-pointer flex-1">
+          <input 
+            type="checkbox" 
+            ${s.completed ? 'checked' : ''} 
+            onchange="toggleSkillsRoadmapStep('${s.id}')" 
+            class="mt-1 w-4 h-4 rounded bg-[#0A0A0F] border-[#2A2A3A] text-[#6C63FF] focus:ring-[#6C63FF] cursor-pointer shrink-0" 
+          />
+          <div>
+            <span class="text-[10px] font-mono font-bold text-[#6C63FF] uppercase">${s.stepNumber}</span>
+            <h4 class="text-sm font-bold text-white font-heading ${s.completed ? 'line-through text-[#8888A8]' : ''}">${s.title}</h4>
+          </div>
+        </label>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded shrink-0 ${
+          s.completed ? 'bg-[#00D4AA]/10 text-[#00D4AA] border border-[#00D4AA]/30' : 'bg-[#13131A] text-[#8888A8] border border-[#2A2A3A]'
+        }">
+          ${s.completed ? 'Completed ✓' : 'In Progress'}
+        </span>
       </div>
-      <p class="text-slate-200">You validated the business goal, presented exact cost economics, offered a hybrid 3-tier architecture, and prepared a fast prototype. US founders love engineers who protect their budget while shipping at high velocity.</p>
-    `;
-    if (window.confetti) confetti({ particleCount: 35, spread: 60 });
-    AudioFX.playSuccess();
-  } else {
-    feedback.className = 'p-4 rounded-xl text-xs space-y-1.5 bg-[#13131A] border border-rose-800 text-rose-300';
-    feedback.innerHTML = `
-      <div class="font-bold flex items-center gap-1.5 font-heading text-rose-400">
-        <i data-lucide="alert-triangle" class="w-4 h-4"></i> Sub-Optimal Traditional Response
+
+      <div class="space-y-2 text-xs pl-7">
+        <div>
+          <span class="text-[11px] font-mono text-[#00D4AA] font-semibold">Learn:</span>
+          <ul class="list-disc list-inside text-slate-300 text-[11px] space-y-0.5 mt-0.5">
+            ${s.learn.map(l => `<li>${l}</li>`).join('')}
+          </ul>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#13131A] border border-[#2A2A3A] text-[11px]">
+          <strong class="text-white font-mono">Build:</strong> <span class="text-slate-300">${s.build}</span>
+        </div>
+        ${s.note ? `<div class="text-[10px] text-amber-400 italic font-mono">Note: "${s.note}"</div>` : ''}
       </div>
-      <p class="text-slate-300">${option === 'A' ? 'Blind agreement causes severe AWS/API billing spikes and hallucinations. Founders will blame you for the burn.' : 'Outright refusal without a constructive alternative makes you a blocker.'} Read Option C to see the high-agency standard.</p>
-    `;
+    </div>
+  `).join('');
+
+  if (window.lucide) lucide.createIcons({ root: container });
+}
+
+function toggleSkillsRoadmapStep(stepId) {
+  AudioFX.playClick();
+  const step = appState.skillsRoadmap.find(s => s.id === stepId);
+  if (step) {
+    step.completed = !step.completed;
+    saveToStorage(STORAGE_KEYS.SKILLS_ROADMAP, appState.skillsRoadmap);
+    renderSkillsRoadmap();
+    updateTodaysFocus();
+    if (step.completed) {
+      AudioFX.playSuccess();
+      showToast(`Completed: ${step.stepNumber} — ${step.title}`);
+    }
   }
-  if (window.lucide) lucide.createIcons({ root: feedback });
+}
+
+function resetSkillsRoadmap() {
+  AudioFX.playClick();
+  appState.skillsRoadmap = DEFAULT_SKILLS_ROADMAP.map(s => ({ ...s, completed: false }));
+  saveToStorage(STORAGE_KEYS.SKILLS_ROADMAP, appState.skillsRoadmap);
+  renderSkillsRoadmap();
+  updateTodaysFocus();
+  showToast('AI Skills Roadmap reset.');
 }
 
 // ==========================================
-// SECTION 5: EXECUTION ROADMAP
+// STEP 5: BUILD PROOF OF WORK (BLUEPRINTS & ROADMAP)
 // ==========================================
 function switchRoadmapPhase(phaseNum) {
   AudioFX.playClick();
@@ -999,9 +1228,6 @@ function updateRoadmapProgress() {
   }
 }
 
-// ==========================================
-// SECTION 6: PROJECT BLUEPRINTS
-// ==========================================
 function renderBlueprints() {
   const container = document.getElementById('blueprints-container');
   if (!container) return;
@@ -1118,7 +1344,45 @@ function copyJDOutput() {
 }
 
 // ==========================================
-// SECTION 7: OFFER FRAMEWORK PROPOSAL
+// STEP 6: FIND THE RIGHT JOBS (TABS & TOOLS)
+// ==========================================
+function switchFindJobsTab(tabId) {
+  AudioFX.playClick();
+  const tabs = ['platforms', 'titles', 'strings', 'roles'];
+  tabs.forEach(t => {
+    const btn = document.getElementById(`findjobs-tab-${t}`);
+    const content = document.getElementById(`findjobs-content-${t}`);
+    if (btn && content) {
+      if (t === tabId) {
+        btn.classList.add('bg-[#6C63FF]', 'text-white', 'font-semibold');
+        btn.classList.remove('text-[#8888A8]', 'hover:text-white');
+        content.classList.remove('hidden');
+      } else {
+        btn.classList.remove('bg-[#6C63FF]', 'text-white', 'font-semibold');
+        btn.classList.add('text-[#8888A8]', 'hover:text-white');
+        content.classList.add('hidden');
+      }
+    }
+  });
+}
+
+function copySearchString(text) {
+  AudioFX.playClick();
+  navigator.clipboard.writeText(text);
+  showToast('Copied search string to clipboard!');
+}
+
+function copyTemplateMessage(templateId) {
+  AudioFX.playClick();
+  const el = document.getElementById(templateId);
+  if (el) {
+    navigator.clipboard.writeText(el.innerText || el.value);
+    showToast('Template copied to clipboard!');
+  }
+}
+
+// ==========================================
+// STEP 7: CRAFT YOUR OFFER (PROPOSAL GENERATOR)
 // ==========================================
 function openProposalGeneratorModal() {
   AudioFX.playClick();
@@ -1167,11 +1431,11 @@ function copyProposalOutput() {
 }
 
 // ==========================================
-// SECTION 8: LINKEDIN STUDIO
+// STEP 8: LINKEDIN STUDIO (6 TABS & CHECKLISTS)
 // ==========================================
 function switchLinkedInTab(tabKey) {
   AudioFX.playClick();
-  const tabs = ['headlines', 'about', 'checklist', 'featured', 'content', 'launch30'];
+  const tabs = ['headlines', 'about', 'featured', 'content', 'launch30', 'checklist'];
   tabs.forEach(t => {
     const btn = document.getElementById(`li-tab-${t}`);
     const content = document.getElementById(`li-content-${t}`);
@@ -1261,22 +1525,6 @@ function copyPostDraft() {
   showToast('Copied post draft to clipboard!');
 }
 
-// TAB 1: 30-Day Launch Plan
-const DEFAULT_LAUNCH_30_PLAN = [
-  { id: 'l30-1', day: 'Day 1', title: 'Profile Setup', desc: 'Photo, banner, headline (Formula 1–4), About (5-Block Framework), custom URL, Creator Mode ON', completed: false },
-  { id: 'l30-2', day: 'Day 2', title: 'Featured Section', desc: "Add your best project link (even if it's a learning project with metrics). Placeholder for Slots 2–3.", completed: false },
-  { id: 'l30-3', day: 'Day 3–7', title: 'Daily Outreach Begins', desc: 'Connect with 25 people/day (hiring managers, ML leads, founders). Comment on 10 posts. Join 5 conversations.', completed: false },
-  { id: 'l30-4', day: 'Day 7', title: 'First Post', desc: "Write your first \"confusion post\": what you're learning, what confused you, how you figured it out.", completed: false },
-  { id: 'l30-5', day: 'Day 8–14', title: 'Outreach + Content', desc: 'Continue daily outreach. Post second piece (a mistake you made while learning). Track stats.', completed: false },
-  { id: 'l30-6', day: 'Day 14', title: 'Audit', desc: 'Check connection acceptance rate (target: 40%+). Check post engagement. Refine headline if needed.', completed: false },
-  { id: 'l30-7', day: 'Day 15–21', title: 'Deepen Content', desc: 'Post tradeoff analysis or cost breakdown from your learning. Engage 50+ posts/week.', completed: false },
-  { id: 'l30-8', day: 'Day 21', title: 'Case Study Draft', desc: 'Start documenting your learning journey as a structured case study for Featured Slot 1.', completed: false },
-  { id: 'l30-9', day: 'Day 22–28', title: 'Scale Outreach', desc: 'Personalize messages using Phase 1 template. Start tracking in CRM spreadsheet.', completed: false },
-  { id: 'l30-10', day: 'Day 30', title: 'Full Audit', desc: "Re-run checklist from Section 3. Update Featured section. Refine About section based on what you've learned about your audience.", completed: false }
-];
-
-let launch30PlanState = loadFromStorage(STORAGE_KEYS.LI_LAUNCH30, DEFAULT_LAUNCH_30_PLAN);
-
 function renderLaunch30Plan() {
   const tbody = document.getElementById('launch-30-tbody');
   const progressBadge = document.getElementById('launch-30-progress-badge');
@@ -1287,7 +1535,7 @@ function renderLaunch30Plan() {
   const completed = launch30PlanState.filter(item => item.completed).length;
   const pct = Math.round((completed / total) * 100);
 
-  if (progressBadge) progressBadge.textContent = `${completed}/${total} completed (${pct}%)`;
+  if (progressBadge) progressBadge.textContent = `${completed}/${total} days complete (${pct}%)`;
   if (progressBar) progressBar.style.width = `${pct}%`;
 
   tbody.innerHTML = launch30PlanState.map(item => `
@@ -1346,71 +1594,6 @@ function resetLaunch30Plan() {
   showToast('30-Day Launch Plan reset.');
 }
 
-// TAB 2: Profile Checklist
-const DEFAULT_PROFILE_CHECKLIST = [
-  {
-    category: 'PROFILE PHOTO & BANNER',
-    icon: 'camera',
-    items: [
-      { id: 'pc-1', title: 'Profile Photo', desc: 'Professional headshot, clear face, neutral/solid background. No group photos, no filters, no sunglasses. Slight smile. Shoulders visible.', completed: false },
-      { id: 'pc-2', title: 'Banner Image', desc: 'Custom banner showing either: (a) your tech stack / architecture diagram, (b) a headline-reinforcing tagline, or (c) your personal brand colors with your value proposition text overlay.', completed: false },
-      { id: 'pc-3', title: 'Photo Ring', desc: 'Turn OFF "Open to Work" green ring. It signals desperation to hiring managers. Instead, signal availability through your content and outreach.', completed: false }
-    ]
-  },
-  {
-    category: 'CORE PROFILE SECTIONS',
-    icon: 'user-check',
-    items: [
-      { id: 'pc-4', title: 'Headline', desc: 'Use one of the 16 headline formulas from Section 1. Must contain: outcome + audience + proof metric. No buzzwords.', completed: false },
-      { id: 'pc-5', title: 'About Section', desc: 'Follow the 5-Block Framework from Section 2. Must include: contrarian hook, specific proof, method/thinking, stack, CTA. 150–250 words max.', completed: false },
-      { id: 'pc-6', title: 'Location', desc: 'Set to your target job market, not your current city (if different). Recruiters filter by location.', completed: false },
-      { id: 'pc-7', title: 'Industry', desc: "Set to the industry you're targeting, not \"Computer Software\" generically.", completed: false },
-      { id: 'pc-8', title: 'Custom URL', desc: 'Claim linkedin.com/in/yourname. Remove random numbers. This appears in search results and email signatures.', completed: false }
-    ]
-  },
-  {
-    category: 'EXPERIENCE SECTION',
-    icon: 'briefcase',
-    items: [
-      { id: 'pc-9', title: 'Titles', desc: 'Use industry-standard titles even for side projects. "ML Engineer (Independent)" > "Freelancer." "Founder, [Project Name]" > "Self-employed."', completed: false },
-      { id: 'pc-10', title: 'Descriptions', desc: 'Every role must answer: What system did you own? What was the scale? What was the business outcome? What decisions did you make and why?', completed: false },
-      { id: 'pc-11', title: 'Metrics', desc: 'Include at least 2 quantifiable results per role: cost saved, latency reduced, requests served, uptime achieved, accuracy improved.', completed: false },
-      { id: 'pc-12', title: 'Side Projects', desc: "List production deployments as experience entries with proper descriptions, not just in a \"Projects\" section. If it serves traffic, it's real work.", completed: false }
-    ]
-  },
-  {
-    category: 'FEATURED SECTION',
-    icon: 'sparkles',
-    items: [
-      { id: 'pc-13', title: 'Slot 1', desc: 'Your best case study or portfolio piece with metrics. Link to deployed system, GitHub repo, or detailed write-up.', completed: false },
-      { id: 'pc-14', title: 'Slot 2', desc: 'Your highest-engagement LinkedIn post (proves you can communicate and that others find your thinking valuable).', completed: false },
-      { id: 'pc-15', title: 'Slot 3', desc: 'An architecture diagram or cost analysis (visual proof of system-level thinking). Could be a blog post or a PDF.', completed: false },
-      { id: 'pc-16', title: 'Ordering', desc: 'Most impressive item first. Hiring managers typically only click the first 1–2 items. Make them count.', completed: false }
-    ]
-  },
-  {
-    category: 'SKILLS, ENDORSEMENTS & RECOMMENDATIONS',
-    icon: 'award',
-    items: [
-      { id: 'pc-17', title: 'Top 3 Skills', desc: 'Pin the 3 skills most relevant to your target role. These appear first and signal your positioning.', completed: false },
-      { id: 'pc-18', title: 'Endorsements', desc: 'Ask 5–10 colleagues/peers to endorse your pinned skills. Quantity matters for search ranking.', completed: false },
-      { id: 'pc-19', title: 'Recommendations', desc: 'Request 2–3 recommendations from people who can speak to your production work, problem-solving, or technical leadership. Provide them talking points so they mention specific outcomes.', completed: false }
-    ]
-  },
-  {
-    category: 'ACTIVITY & CONTENT SETTINGS',
-    icon: 'activity',
-    items: [
-      { id: 'pc-20', title: 'Creator Mode', desc: 'Turn ON. Unlocks Featured section, Follow button, and LinkedIn Live. Shows your content prominently.', completed: false },
-      { id: 'pc-21', title: 'Post Frequency', desc: 'Minimum 2x/week. Content should demonstrate thinking, not just activity.', completed: false },
-      { id: 'pc-22', title: 'Engagement', desc: 'Comment on 10+ posts daily. Add value, not "Great post!". Ask questions, share related experiences, offer contrarian viewpoints.', completed: false },
-      { id: 'pc-23', title: 'Hashtags', desc: 'Follow and use 3–5 niche hashtags your target audience follows. Not #AI or #MachineLearning (too broad). Try #MLOps, #MLEngineering, #AIArchitecture.', completed: false }
-    ]
-  }
-];
-
-let profileChecklistState = loadFromStorage(STORAGE_KEYS.LI_CHECKLIST, DEFAULT_PROFILE_CHECKLIST);
-
 function renderProfileChecklist() {
   const container = document.getElementById('profile-checklist-container');
   const badge = document.getElementById('profile-checklist-progress-badge');
@@ -1426,7 +1609,7 @@ function renderProfileChecklist() {
   });
 
   const pct = Math.round((completedItems / totalItems) * 100);
-  if (badge) badge.textContent = `${completedItems}/${totalItems} completed (${pct}%)`;
+  if (badge) badge.textContent = `${completedItems}/${totalItems} complete (${pct}%)`;
   if (bar) bar.style.width = `${pct}%`;
 
   container.innerHTML = profileChecklistState.map(cat => {
@@ -1515,7 +1698,7 @@ function resetProfileChecklist() {
 }
 
 // ==========================================
-// SECTION 9: OUTREACH CRM & KANBAN
+// STEP 9: OUTREACH CRM & KANBAN
 // ==========================================
 function loadOutreachTemplate(phaseNum) {
   AudioFX.playClick();
@@ -1664,7 +1847,12 @@ function openLeadDatabaseModal() {
 function renderPreloadedLeadsTable(query = '') {
   const tbody = document.getElementById('preloaded-leads-tbody');
   const countBadge = document.getElementById('leads-count-filtered');
-  if (!tbody || typeof PRELOADED_LEADS === 'undefined') return;
+  if (!tbody) return;
+
+  if (typeof PRELOADED_LEADS === 'undefined') {
+    tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-center text-[#8888A8]">Loading leads database...</td></tr>';
+    return;
+  }
 
   const q = query.toLowerCase().trim();
   const filtered = PRELOADED_LEADS.filter(lead => {
@@ -1786,65 +1974,7 @@ function filterBySector(sector) {
 }
 
 // ==========================================
-// SECTION 10: JOB SEARCH ENGINE TABS & UTILS
-// ==========================================
-function switchPlatformTab(tabId) {
-  AudioFX.playClick();
-  const tabs = ['startups', 'remote', 'freelance', 'india'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`platform-tab-${t}`);
-    const content = document.getElementById(`platform-content-${t}`);
-    if (btn && content) {
-      if (t === tabId) {
-        btn.classList.add('bg-[#6C63FF]', 'text-white', 'font-semibold');
-        btn.classList.remove('text-[#8888A8]', 'hover:text-white');
-        content.classList.remove('hidden');
-      } else {
-        btn.classList.remove('bg-[#6C63FF]', 'text-white', 'font-semibold');
-        btn.classList.add('text-[#8888A8]', 'hover:text-white');
-        content.classList.add('hidden');
-      }
-    }
-  });
-}
-
-function switchInterviewTab(tabId) {
-  AudioFX.playClick();
-  const tabs = ['python', 'sql', 'ml', 'llm', 'agents'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`interview-tab-${t}`);
-    const content = document.getElementById(`interview-content-${t}`);
-    if (btn && content) {
-      if (t === tabId) {
-        btn.classList.add('bg-[#6C63FF]', 'text-white', 'font-semibold');
-        btn.classList.remove('text-[#8888A8]', 'hover:text-white');
-        content.classList.remove('hidden');
-      } else {
-        btn.classList.remove('bg-[#6C63FF]', 'text-white', 'font-semibold');
-        btn.classList.add('text-[#8888A8]', 'hover:text-white');
-        content.classList.add('hidden');
-      }
-    }
-  });
-}
-
-function copySearchString(text) {
-  AudioFX.playClick();
-  navigator.clipboard.writeText(text);
-  showToast('Copied search string to clipboard!');
-}
-
-function copyTemplateMessage(templateId) {
-  AudioFX.playClick();
-  const el = document.getElementById(templateId);
-  if (el) {
-    navigator.clipboard.writeText(el.innerText || el.value);
-    showToast('Template copied to clipboard!');
-  }
-}
-
-// ==========================================
-// SECTION 13: FINAL CHECKLIST (NEW)
+// STEP 10: FINAL CHECKLIST & RESOURCES
 // ==========================================
 const DEFAULT_FINAL_CHECKLIST = [
   { id: 'fc-1', text: 'One-page resume', completed: false },
@@ -1916,6 +2046,36 @@ function resetFinalChecklist() {
   showToast('Final Checklist reset.');
 }
 
+// Today's Focus Dynamic Updater
+function updateTodaysFocus() {
+  const focusEl = document.getElementById('todays-focus-task');
+  const progressEl = document.getElementById('todays-focus-progress');
+  if (!focusEl) return;
+
+  // Check 24 roadmap tasks
+  let found = null;
+  let completedCount = 0;
+  let totalCount = 24;
+
+  for (let p = 1; p <= 4; p++) {
+    const tasks = appState.roadmap['phase' + p] || [];
+    tasks.forEach(t => {
+      if (t.completed) completedCount++;
+      else if (!found) found = t;
+    });
+  }
+
+  if (progressEl) {
+    progressEl.textContent = `${completedCount}/${totalCount} roadmap tasks complete`;
+  }
+
+  if (found) {
+    focusEl.textContent = `${found.title} — ${found.desc}`;
+  } else {
+    focusEl.textContent = 'All roadmap tasks complete. Start your outreach today.';
+  }
+}
+
 // Global Audio & Backup Handlers
 function toggleAudio() {
   appState.sound = !appState.sound;
@@ -1947,7 +2107,7 @@ function exportUserDataJSON() {
   const data = {
     exportedAt: new Date().toISOString(),
     roadmap: appState.roadmap,
-    roadmap90: roadmap90State,
+    skillsRoadmap: appState.skillsRoadmap,
     audit: appState.audit,
     kanban: appState.kanban,
     daily: appState.daily,
@@ -1974,7 +2134,7 @@ function importUserDataJSON(event) {
     try {
       const data = JSON.parse(e.target.result);
       if (data.roadmap) appState.roadmap = data.roadmap;
-      if (data.roadmap90) roadmap90State = data.roadmap90;
+      if (data.skillsRoadmap) appState.skillsRoadmap = data.skillsRoadmap;
       if (data.audit) appState.audit = data.audit;
       if (data.kanban) appState.kanban = data.kanban;
       if (data.daily) appState.daily = data.daily;
@@ -1983,7 +2143,7 @@ function importUserDataJSON(event) {
       if (data.finalChecklist) finalChecklistState = data.finalChecklist;
 
       saveToStorage(STORAGE_KEYS.ROADMAP, appState.roadmap);
-      saveToStorage(STORAGE_KEYS.ROADMAP_90, roadmap90State);
+      saveToStorage(STORAGE_KEYS.SKILLS_ROADMAP, appState.skillsRoadmap);
       saveToStorage(STORAGE_KEYS.AUDIT, appState.audit);
       saveToStorage(STORAGE_KEYS.KANBAN, appState.kanban);
       saveToStorage(STORAGE_KEYS.DAILY, appState.daily);
@@ -1991,7 +2151,7 @@ function importUserDataJSON(event) {
       saveToStorage(STORAGE_KEYS.LI_LAUNCH30, launch30PlanState);
       saveToStorage(STORAGE_KEYS.FINAL_CHECKLIST, finalChecklistState);
 
-      render90DayRoadmap();
+      renderSkillsRoadmap();
       renderAuditQuestions();
       renderRoadmap();
       renderProfileChecklist();
@@ -2000,6 +2160,7 @@ function importUserDataJSON(event) {
       renderKanban();
       updateRoadmapProgress();
       updateDailyDisplay();
+      updateTodaysFocus();
       closeModal('backup-modal');
       showToast('Data imported successfully!');
       AudioFX.playSuccess();
@@ -2020,34 +2181,6 @@ function resetAllData() {
 function closeModal(modalId) {
   AudioFX.playClick();
   document.getElementById(modalId)?.classList.add('hidden');
-}
-
-function updateTodaysFocus() {
-  const focusEl = document.getElementById('todays-focus-task');
-  if (!focusEl) return;
-  // Find first incomplete task across all 4 phases of the execution roadmap
-  let found = null;
-  for (let p = 1; p <= 4; p++) {
-    const tasks = appState.roadmap['phase' + p] || [];
-    found = tasks.find(t => !t.completed);
-    if (found) break;
-  }
-  if (found) {
-    focusEl.textContent = 'Phase task: ' + found.title;
-  } else {
-    // Check 90-day roadmap
-    let foundNR = null;
-    for (const pKey of ['phase1', 'phase2', 'phase3']) {
-      const items = roadmap90State[pKey] || [];
-      foundNR = items.find(i => !i.completed);
-      if (foundNR) break;
-    }
-    if (foundNR) {
-      focusEl.textContent = '90-Day milestone: ' + foundNR.text;
-    } else {
-      focusEl.textContent = '🏆 All milestones completed! You are job-ready.';
-    }
-  }
 }
 
 function scrollToSection(sectionId) {
