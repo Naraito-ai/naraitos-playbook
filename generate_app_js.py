@@ -1,4 +1,7 @@
-/**
+# Python generator script for Naraito's Playbook UI Overhaul and New Sections
+import os
+
+app_js_code = r'''/**
  * Naraito's Playbook: Mastering US Remote Engineering Jobs (0 Experience Edition)
  * Comprehensive Interactive Dashboard & Career Execution Portal Engine
  */
@@ -2011,3 +2014,9 @@ document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
   const nav = document.getElementById('mobile-pill-nav');
   if (nav) nav.classList.toggle('hidden');
 });
+'''
+
+with open(r'D:\us-remote-engineering-playbook\app.js', 'w', encoding='utf-8') as f:
+    f.write(app_js_code)
+
+print("Generated updated app.js successfully!")
