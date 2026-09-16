@@ -1,0 +1,32 @@
+name: Build & Verify Single-File Playbook
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Rebuild Single-File index.html
+        run: |
+          python build_single_file.py
+
+      - name: Validate JS Syntax
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          node -c app.js
+          node -c curated_leads.js
